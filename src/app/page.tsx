@@ -1,8 +1,13 @@
+import Link from "next/link";
 import { ComparisonTable } from "@/components/ComparisonTable";
 import { NewsletterForm } from "@/components/NewsletterForm";
+import { AffiliateDisclosure } from "@/components/AffiliateDisclosure";
+import { getAllComparePairs } from "@/lib/compares";
 import { LAST_UPDATED, SCENARIO } from "@/lib/platforms";
 
 export default function HomePage() {
+  const samplePairs = getAllComparePairs().slice(0, 6);
+
   return (
     <>
       <section className="relative overflow-hidden border-b border-zinc-800">
@@ -36,14 +41,24 @@ export default function HomePage() {
             >
               View comparison
             </a>
-            <a
+            <Link
+              href="/compare"
+              className="rounded-lg border border-zinc-700 px-5 py-2.5 text-sm font-medium text-zinc-200 hover:border-zinc-500"
+            >
+              Head-to-head
+            </Link>
+            <Link
               href="/methodology"
               className="rounded-lg border border-zinc-700 px-5 py-2.5 text-sm font-medium text-zinc-200 hover:border-zinc-500"
             >
               How we calculate
-            </a>
+            </Link>
           </div>
         </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4 pt-8 sm:px-6">
+        <AffiliateDisclosure />
       </section>
 
       <section id="compare" className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
@@ -55,16 +70,44 @@ export default function HomePage() {
               Expand a row for sources and breakdown.
             </p>
           </div>
-          <a href="/methodology" className="text-sm text-amber-400 hover:underline">
+          <Link href="/methodology" className="text-sm text-amber-400 hover:underline">
             Full methodology →
-          </a>
+          </Link>
         </div>
         <ComparisonTable />
       </section>
 
+      <section className="border-y border-zinc-800 bg-zinc-900/20">
+        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+          <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h2 className="text-2xl font-semibold text-zinc-50">Head-to-head</h2>
+              <p className="mt-1 text-sm text-zinc-500">
+                15 pair pages with $25 / $100 / $500 weekly all-in for 1 year.
+              </p>
+            </div>
+            <Link href="/compare" className="text-sm text-amber-400 hover:underline">
+              All comparisons →
+            </Link>
+          </div>
+          <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            {samplePairs.map((p) => (
+              <li key={p.slug}>
+                <Link
+                  href={`/compare/${p.slug}`}
+                  className="block rounded-lg border border-zinc-800 bg-zinc-900/40 px-4 py-3 text-sm text-zinc-200 transition hover:border-amber-500/40 hover:text-amber-400"
+                >
+                  {p.a.name} vs {p.b.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       <section
         id="alerts"
-        className="border-y border-zinc-800 bg-zinc-900/30"
+        className="border-b border-zinc-800 bg-zinc-900/30"
       >
         <div className="relative mx-auto max-w-6xl px-4 py-14 sm:px-6">
           <h2 className="text-2xl font-semibold text-zinc-50">Get fee-change alerts</h2>
