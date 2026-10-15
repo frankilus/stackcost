@@ -1,11 +1,15 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { AffiliateDisclosure } from "@/components/AffiliateDisclosure";
 import { LAST_UPDATED, SCENARIO, platforms } from "@/lib/platforms";
-import { computeCost, formatPct, formatUsd } from "@/lib/calc";
+import { COMPARE_WEEKLIES, computeCost, formatPct, formatUsd } from "@/lib/calc";
+import { SITE_URL } from "@/lib/compares";
 
 export const metadata: Metadata = {
   title: "Methodology — StackCost",
-  description: "How StackCost computes all-in DCA Bitcoin costs across platforms.",
+  description:
+    "How StackCost computes all-in DCA Bitcoin costs across platforms. Verified fee data and transparent formula.",
+  alternates: { canonical: `${SITE_URL}/methodology` },
 };
 
 export default function MethodologyPage() {
@@ -17,9 +21,23 @@ export default function MethodologyPage() {
         ← Back to comparison
       </Link>
       <h1 className="mt-4 text-3xl font-semibold text-zinc-50">Methodology</h1>
-      <p className="mt-2 text-sm text-zinc-500">
-        Last reviewed {LAST_UPDATED} (ET). Scenario: {SCENARIO.label}.
+
+      <div className="mt-4 rounded-lg border border-amber-500/30 bg-amber-500/5 px-4 py-3 text-sm text-zinc-300">
+        <p>
+          <strong className="font-medium text-amber-400">Verified:</strong> Fee inputs
+          last reviewed <time dateTime={LAST_UPDATED}>{LAST_UPDATED}</time> (America/New_York).
+          Source links on each platform row and compare page show the access date.
+        </p>
+      </div>
+
+      <p className="mt-4 text-sm text-zinc-500">
+        Default homepage scenario: {SCENARIO.label}. Head-to-head pages also show $
+        {COMPARE_WEEKLIES.join(", $")}/week for 52 weeks.
       </p>
+
+      <div className="mt-6">
+        <AffiliateDisclosure />
+      </div>
 
       <section className="mt-10 space-y-4 text-sm leading-relaxed text-zinc-300">
         <h2 className="text-lg font-medium text-zinc-100">What “all-in” means</h2>
@@ -33,8 +51,7 @@ export default function MethodologyPage() {
         <h2 className="text-lg font-medium text-zinc-100">Formula</h2>
         <pre className="overflow-x-auto rounded-lg border border-zinc-800 bg-zinc-900 p-4 text-xs text-zinc-300">
 {`invested = weekly × weeks
-          = $${SCENARIO.weeklyUsd} × ${SCENARIO.weeks}
-          = $${SCENARIO.weeklyUsd * SCENARIO.weeks}
+          = weekly × ${SCENARIO.weeks}
 
 # Platforms with free DCA after first buy (Strike, River weekly):
 buyFees = weekly × standardBuyFeePct
@@ -53,10 +70,22 @@ allInPct     = allInCostUsd / invested`}
         </pre>
 
         <p>
-          Example ({platforms[0].name}): buy fees {formatUsd(example.buyFeesPaid)}, spread{" "}
-          {formatUsd(example.spreadPaid)}, custody {formatUsd(example.custodyPaid)} → all-in{" "}
+          Example ({platforms[0].name} at ${SCENARIO.weeklyUsd}/wk): buy fees{" "}
+          {formatUsd(example.buyFeesPaid)}, spread {formatUsd(example.spreadPaid)}, custody{" "}
+          {formatUsd(example.custodyPaid)} → all-in{" "}
           <strong className="text-zinc-100">{formatUsd(example.allInCostUsd)}</strong> (
           {formatPct(example.allInPct)} of invested).
+        </p>
+
+        <h2 className="text-lg font-medium text-zinc-100">Head-to-head pages</h2>
+        <p>
+          Every unique pair among the six platforms gets a compare URL (15 pages). The
+          “winner” is whoever has the lower modeled all-in cost at that weekly amount —
+          never by affiliate status. See{" "}
+          <Link href="/compare" className="text-amber-400 hover:underline">
+            all comparisons
+          </Link>
+          .
         </p>
 
         <h2 className="text-lg font-medium text-zinc-100">Path choices</h2>

@@ -2,6 +2,8 @@ import { Platform, SCENARIO } from "./platforms";
 
 export interface CostBreakdown {
   platformId: string;
+  weeklyUsd: number;
+  weeks: number;
   totalInvested: number;
   buyFeesPaid: number;
   spreadPaid: number;
@@ -14,10 +16,13 @@ export interface CostBreakdown {
   score: number;
 }
 
+export const COMPARE_WEEKLIES = [25, 100, 500] as const;
+export type CompareWeekly = (typeof COMPARE_WEEKLIES)[number];
+
 /**
  * Transparent formula (documented on /methodology):
  *
- * weekly = $100, weeks = 52, invested = weekly * weeks
+ * invested = weekly * weeks
  *
  * If firstBuyPaysStandardFee:
  *   buyFees = weekly * standardBuyFeePct  +  weekly * buyFeePct * (weeks - 1)
@@ -25,8 +30,6 @@ export interface CostBreakdown {
  *   buyFees = weekly * buyFeePct * weeks
  *
  * spreadPaid = weekly * spreadEstimatePct * weeks
- *   (or only after first buy when firstBuyPaysStandardFee — we apply spread all weeks;
- *    for free-DCA platforms spread is 0)
  *
  * custodyPaid ≈ average balance * custodyMonthlyPct * 12
  *   average balance ≈ invested / 2  (linear DCA into custody)
@@ -37,8 +40,11 @@ export interface CostBreakdown {
  * Network miner fees for withdrawals are excluded (variable); platform withdrawal policy
  * is noted qualitatively in the table.
  */
-export function computeCost(p: Platform): CostBreakdown {
-  const { weeklyUsd, weeks } = SCENARIO;
+export function computeCost(
+  p: Platform,
+  weeklyUsd: number = SCENARIO.weeklyUsd,
+  weeks: number = SCENARIO.weeks,
+): CostBreakdown {
   const invested = weeklyUsd * weeks;
 
   let buyFeesPaid: number;
@@ -60,6 +66,8 @@ export function computeCost(p: Platform): CostBreakdown {
 
   return {
     platformId: p.id,
+    weeklyUsd,
+    weeks,
     totalInvested: invested,
     buyFeesPaid,
     spreadPaid,

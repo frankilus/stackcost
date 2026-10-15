@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/Footer";
+import { SITE_URL } from "@/lib/compares";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,6 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "StackCost — Real all-in cost to DCA Bitcoin",
   description:
     "Living comparison of the true all-in cost to buy Bitcoin on a schedule across US platforms. Transparent fees, spreads, and custody.",
@@ -21,6 +23,7 @@ export const metadata: Metadata = {
     title: "StackCost",
     description: "The real all-in cost to buy Bitcoin on a schedule.",
     type: "website",
+    url: SITE_URL,
   },
 };
 
@@ -41,6 +44,9 @@ export default function RootLayout({
             </a>
             <nav className="flex gap-5 text-sm text-zinc-400">
               <a href="/#compare" className="hover:text-zinc-100">
+                Table
+              </a>
+              <a href="/compare" className="hover:text-zinc-100">
                 Compare
               </a>
               <a href="/methodology" className="hover:text-zinc-100">

@@ -1,7 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import { platforms, type Platform } from "@/lib/platforms";
+import { getAllComparePairs } from "@/lib/compares";
 import { computeCost, formatPct, formatUsd, type CostBreakdown } from "@/lib/calc";
 
 type Row = { platform: Platform; cost: CostBreakdown };
@@ -153,6 +155,25 @@ function FragmentRow({
                       <span className="text-xs text-zinc-600"> · accessed {s.accessed}</span>
                     </li>
                   ))}
+                </ul>
+                <h3 className="mb-1 mt-3 font-medium text-zinc-100">Compare vs</h3>
+                <ul className="flex flex-wrap gap-2">
+                  {getAllComparePairs()
+                    .filter((p) => p.a.id === platform.id || p.b.id === platform.id)
+                    .map((p) => {
+                      const other = p.a.id === platform.id ? p.b : p.a;
+                      return (
+                        <li key={p.slug}>
+                          <Link
+                            href={`/compare/${p.slug}`}
+                            className="text-xs text-amber-400 hover:underline"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            vs {other.name}
+                          </Link>
+                        </li>
+                      );
+                    })}
                 </ul>
               </div>
             </div>
