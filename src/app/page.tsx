@@ -1,9 +1,36 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ComparisonTable } from "@/components/ComparisonTable";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { AffiliateDisclosure } from "@/components/AffiliateDisclosure";
 import { getAllComparePairs } from "@/lib/compares";
-import { LAST_UPDATED, SCENARIO } from "@/lib/platforms";
+import { LAST_UPDATED, SCENARIO, platforms } from "@/lib/platforms";
+import { costPages, HUB_SLUG } from "@/lib/costPages";
+
+export const metadata: Metadata = { alternates: { canonical: "/" } };
+
+const hubs = [
+  {
+    href: `/costs/${HUB_SLUG}`,
+    title: "Cheapest Bitcoin DCA in the US",
+    body: "Ranked all-in cost for recurring buys — the short answer.",
+  },
+  {
+    href: "/compare",
+    title: "Head-to-head comparisons",
+    body: "Platform vs platform at $25, $100 and $500 per week.",
+  },
+  {
+    href: "/fee-changes",
+    title: "Fee change log",
+    body: "Every promo, tier and fee change we track, dated.",
+  },
+  {
+    href: "/methodology",
+    title: "Methodology",
+    body: "The exact formula, assumptions and sources behind every number.",
+  },
+];
 
 export default function HomePage() {
   const samplePairs = getAllComparePairs().slice(0, 6);
@@ -20,7 +47,7 @@ export default function HomePage() {
             US platforms · DCA focus
           </p>
           <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-zinc-50 sm:text-5xl">
-            StackCost
+            The cheapest way to DCA Bitcoin in the US
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-zinc-300 sm:text-xl">
             The real all-in cost to buy Bitcoin on a schedule.
@@ -61,6 +88,37 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4 pt-10 sm:px-6">
+        <h2 className="sr-only">Explore StackCost</h2>
+        <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {hubs.map((h) => (
+            <li key={h.href}>
+              <Link
+                href={h.href}
+                className="block h-full rounded-xl border border-zinc-800 bg-zinc-900/40 p-4 transition hover:border-amber-500/40"
+              >
+                <span className="font-medium text-zinc-100">{h.title} →</span>
+                <span className="mt-1 block text-sm text-zinc-500">{h.body}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-4 text-sm text-zinc-500">
+          True-cost guides:{" "}
+          {costPages.map((c, i) => {
+            const name = platforms.find((p) => p.id === c.platformId)?.name ?? c.slug;
+            return (
+              <span key={c.slug}>
+                {i > 0 && " · "}
+                <Link href={`/costs/${c.slug}`} className="text-amber-400 hover:underline">
+                  {name} fees
+                </Link>
+              </span>
+            );
+          })}
+        </p>
       </section>
 
       <section className="mx-auto max-w-6xl px-4 pt-8 sm:px-6">

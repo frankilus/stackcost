@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { AffiliateDisclosure } from "@/components/AffiliateDisclosure";
 import { LAST_UPDATED } from "@/lib/platforms";
+import { costPages } from "@/lib/costPages";
 
 export function Footer() {
   return (
@@ -39,6 +40,13 @@ export function Footer() {
           <Link href="/#alerts" className="hover:text-amber-400">
             Fee alerts
           </Link>
+        </div>
+        <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-zinc-600">
+          {costPages.map((c) => (
+            <Link key={c.slug} href={`/costs/${c.slug}`} className="hover:text-amber-400">
+              {c.h1.split(" — ")[0]}
+            </Link>
+          ))}
         </div>
         <p className="mt-4 text-xs text-zinc-600">© {new Date().getFullYear()} StackCost</p>
       </div>

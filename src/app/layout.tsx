@@ -16,15 +16,44 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "StackCost — Real all-in cost to DCA Bitcoin",
+  title: "StackCost — Cheapest Way to DCA Bitcoin in the US (2026 True-Cost Comparison)",
   description:
-    "Living comparison of the true all-in cost to buy Bitcoin on a schedule across US platforms. Transparent fees, spreads, and custody.",
+    "Compare the true all-in cost of recurring Bitcoin buys on Strike, River, Swan, Coinbase, Kraken and Cash App. Fees, spreads, custody and withdrawals modeled for $100/week DCA — sources linked, estimates labeled.",
   openGraph: {
-    title: "StackCost",
-    description: "The real all-in cost to buy Bitcoin on a schedule.",
+    title: "StackCost — The real all-in cost to DCA Bitcoin",
+    description:
+      "Fees + spreads + custody for recurring Bitcoin buys on 6 US platforms. Find the cheapest DCA path.",
     type: "website",
     url: SITE_URL,
+    siteName: "StackCost",
+    locale: "en_US",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "StackCost — Cheapest way to DCA Bitcoin (US)",
+    description: "True all-in cost of recurring Bitcoin buys across 6 US platforms.",
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
+      name: "StackCost",
+      url: SITE_URL,
+      description: "Independent true-cost comparison of US Bitcoin DCA platforms.",
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      name: "StackCost",
+      url: SITE_URL,
+      inLanguage: "en-US",
+      publisher: { "@id": `${SITE_URL}/#organization` },
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -37,12 +66,16 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-zinc-950 text-zinc-100 antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <header className="border-b border-zinc-800/80">
           <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
             <a href="/" className="text-lg font-semibold tracking-tight text-zinc-50">
               Stack<span className="text-amber-400">Cost</span>
             </a>
-            <nav className="flex gap-5 text-sm text-zinc-400">
+            <nav className="flex flex-wrap gap-x-5 gap-y-1 text-sm text-zinc-400">
               <a href="/#compare" className="hover:text-zinc-100">
                 Table
               </a>
@@ -51,6 +84,9 @@ export default function RootLayout({
               </a>
               <a href="/compare" className="hover:text-zinc-100">
                 Compare
+              </a>
+              <a href="/fee-changes" className="hover:text-zinc-100">
+                Fee changes
               </a>
               <a href="/methodology" className="hover:text-zinc-100">
                 Methodology
