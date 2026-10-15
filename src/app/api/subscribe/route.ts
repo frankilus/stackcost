@@ -4,14 +4,13 @@ const SEGMENT_ID =
   process.env.RESEND_SEGMENT_ID || "eaa2c6d9-e343-4531-b457-19079938cf0b";
 
 /**
- * Newsletter signup → Resend Contacts API (Audiences/Segments).
+ * Newsletter signup → Resend Contacts API.
  *
  * Env:
  *   RESEND_API_KEY     — required for live storage (Resend free tier)
  *   RESEND_SEGMENT_ID  — optional; defaults to StackCost Fee Alerts segment
  *
- * If RESEND_API_KEY is missing, we accept the email, log a stub line, and return
- * ok so the UI does not crash. TODO: set RESEND_API_KEY in Vercel project env.
+ * If RESEND_API_KEY is missing, accept + log stub so the UI never crashes.
  */
 export async function POST(req: NextRequest) {
   let email = "";
@@ -29,7 +28,6 @@ export async function POST(req: NextRequest) {
   const apiKey = process.env.RESEND_API_KEY;
 
   if (!apiKey) {
-    // Stub path: do not crash; ready for Resend once key is set.
     console.info("[subscribe:stub] would add contact", { email, segmentId: SEGMENT_ID });
     return NextResponse.json({
       ok: true,
@@ -62,27 +60,10 @@ export async function POST(req: NextRequest) {
     if (!res.ok) {
       const text = await res.text();
       console.error("[subscribe] Resend error", res.status, text);
-      // Fallback: try alternate payload shape (segmentIds)
-      const retry = await fetch("https://api.resend.com/contacts", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          unsubscribed: false,
-          segmentIds: [SEGMENT_ID],
-        }),
-      });
-      if (!retry.ok && retry.status !== 409) {
-        const retryText = await retry.text();
-        console.error("[subscribe] Resend retry error", retry.status, retryText);
-        return NextResponse.json(
-          { ok: false, error: "Could not save subscription. Try again later." },
-          { status: 502 }
-        );
-      }
+      return NextResponse.json(
+        { ok: false, error: "Could not save subscription. Try again later." },
+        { status: 502 }
+      );
     }
 
     return NextResponse.json({
