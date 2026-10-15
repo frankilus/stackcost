@@ -1,0 +1,47 @@
+{
+  "_readme": "Append-only log. Newest entries may go anywhere; page sorts by date desc. type: baseline | fee-change | spread-change | policy-change | no-change. Never invent changes; cite a source URL accessed on the entry date.",
+  "entries": [
+    {
+      "date": "2026-10-15",
+      "platformId": "strike",
+      "type": "baseline",
+      "summary": "Baseline verification: recurring weekly DCA fee 0% after first purchase; standard buy fee 0.89% applies to first buy. No spread for this path per Strike.",
+      "source": "https://strike.me/en/faq/what-are-the-bitcoin-trading-fees-on-strike/"
+    },
+    {
+      "date": "2026-10-15",
+      "platformId": "river",
+      "type": "baseline",
+      "summary": "Baseline verification: recurring-buy fee 0% as modeled; spread ~0% is a StackCost estimate (not published).",
+      "source": "https://support.river.com/hc/en-us/articles/50055900679315-What-are-River-s-fees"
+    },
+    {
+      "date": "2026-10-15",
+      "platformId": "swan",
+      "type": "baseline",
+      "summary": "Baseline verification: auto-purchase fee 1.0%; no separate spread per Swan's documented pricing.",
+      "source": "https://help.swanbitcoin.com/hc/en-us/articles/360045394134-What-are-Swan-Bitcoin-s-fees"
+    },
+    {
+      "date": "2026-10-15",
+      "platformId": "coinbase",
+      "type": "baseline",
+      "summary": "Baseline verification: recurring-buy fee modeled at 1.49%; spread ~0.5% is a StackCost estimate.",
+      "source": "https://help.coinbase.com/en/coinbase/trading-and-funding/pricing-and-fees/fees"
+    },
+    {
+      "date": "2026-10-15",
+      "platformId": "kraken",
+      "type": "baseline",
+      "summary": "Baseline verification: buy fee modeled at 1.0%; spread ~0.5% is a StackCost estimate.",
+      "source": "https://www.kraken.com/features/fee-schedule"
+    },
+    {
+      "date": "2026-10-15",
+      "platformId": "cashapp",
+      "type": "baseline",
+      "summary": "Baseline verification: auto-invest fee modeled at 0% with no separate spread for the modeled path, per Cash App disclosures.",
+      "source": "https://cash.app/bitcoin/fees"
+    }
+  ]
+}

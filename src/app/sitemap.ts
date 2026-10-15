@@ -32,6 +32,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.95,
     },
+    {
+      url: `${SITE_URL}/fee-changes`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
     ...costPages.map((c) => ({
       url: `${SITE_URL}/costs/${c.slug}`,
       lastModified,

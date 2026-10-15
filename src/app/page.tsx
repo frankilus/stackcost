@@ -53,6 +53,12 @@ export default function HomePage() {
             >
               How we calculate
             </Link>
+            <Link
+              href="/fee-changes"
+              className="rounded-lg border border-zinc-700 px-5 py-2.5 text-sm font-medium text-zinc-200 hover:border-zinc-500"
+            >
+              Fee change log
+            </Link>
           </div>
         </div>
       </section>
