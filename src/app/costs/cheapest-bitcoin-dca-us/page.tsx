@@ -81,7 +81,7 @@ export default function Hub() {
           </tbody>
         </table>
       </section>
-      <p className="mt-3 text-xs text-zinc-500">52 weekly buys. Spreads marked estimate on Coinbase, Kraken, River. Miner fees excluded. <Link href="/methodology" className="text-amber-400 hover:underline">Methodology</Link> · <Link href="/compare" className="text-amber-400 hover:underline">Head-to-head pages</Link></p>
+      <p className="mt-3 text-xs text-zinc-500">52 weekly buys. Spreads marked estimate on Coinbase, Kraken, River. Miner fees excluded. <Link href="/methodology" className="text-amber-400 hover:underline">Methodology</Link> · <Link href="/compare" className="text-amber-400 hover:underline">Head-to-head pages</Link> · <Link href="/fee-changes" className="text-amber-400 hover:underline">Fee change log</Link></p>
 
       <section className="mt-10">
         <h2 className="text-xl font-semibold text-zinc-50">FAQ</h2>
@@ -91,7 +91,7 @@ export default function Hub() {
       </section>
 
       <section id="alerts" className="mt-12 rounded-xl border border-zinc-800 bg-zinc-900/40 p-6 sm:p-8">
-        <h2 className="text-xl font-semibold text-zinc-50">Get fee-change alerts</h2>
+        <h2 className="text-xl font-semibold text-zinc-50">Get alerted when fees change.</h2>
         <p className="mt-2 max-w-xl text-sm text-zinc-400">We re-check these platforms and email when the ranking moves. Unsubscribe anytime.</p>
         <div className="relative mt-5 max-w-lg"><NewsletterForm /></div>
       </section>

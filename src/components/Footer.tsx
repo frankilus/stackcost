@@ -32,6 +32,10 @@ export function Footer() {
             Full table
           </Link>
           <span aria-hidden>·</span>
+          <Link href="/fee-changes" className="hover:text-amber-400">
+            Fee change log
+          </Link>
+          <span aria-hidden>·</span>
           <Link href="/#alerts" className="hover:text-amber-400">
             Fee alerts
           </Link>
