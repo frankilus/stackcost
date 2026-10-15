@@ -1,0 +1,33 @@
+import Link from "next/link";
+import { LAST_UPDATED } from "@/lib/platforms";
+
+export function Footer() {
+  return (
+    <footer className="border-t border-zinc-800 bg-zinc-950">
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+        <p className="text-sm leading-relaxed text-zinc-400">
+          <strong className="font-medium text-zinc-200">Disclaimer:</strong> StackCost
+          is for informational purposes only and is{" "}
+          <strong className="font-medium text-zinc-200">not financial advice</strong>.
+          Fees, spreads, and policies change without notice. Always verify current
+          pricing with each platform before buying or withdrawing. Estimates are
+          labeled as such. Data last reviewed {LAST_UPDATED} (ET).
+        </p>
+        <div className="mt-6 flex flex-wrap gap-4 text-sm text-zinc-500">
+          <Link href="/methodology" className="hover:text-amber-400">
+            Methodology
+          </Link>
+          <span aria-hidden>·</span>
+          <a href="#compare" className="hover:text-amber-400">
+            Comparison
+          </a>
+          <span aria-hidden>·</span>
+          <a href="#alerts" className="hover:text-amber-400">
+            Fee alerts
+          </a>
+        </div>
+        <p className="mt-4 text-xs text-zinc-600">© {new Date().getFullYear()} StackCost</p>
+      </div>
+    </footer>
+  );
+}
