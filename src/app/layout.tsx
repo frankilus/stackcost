@@ -46,6 +46,9 @@ export default function RootLayout({
               <a href="/#compare" className="hover:text-zinc-100">
                 Table
               </a>
+              <a href="/costs/cheapest-bitcoin-dca-us" className="hover:text-zinc-100">
+                Cheapest
+              </a>
               <a href="/compare" className="hover:text-zinc-100">
                 Compare
               </a>
