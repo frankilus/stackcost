@@ -1,6 +1,5 @@
 /**
  * Disclosure text only — no live affiliate links yet.
- * Placeholders note where affiliate CTAs may appear later.
  */
 export function AffiliateDisclosure({ compact = false }: { compact?: boolean }) {
   if (compact) {
@@ -9,8 +8,7 @@ export function AffiliateDisclosure({ compact = false }: { compact?: boolean }) 
         <strong className="font-medium text-zinc-400">Affiliate disclosure:</strong>{" "}
         StackCost may earn a commission if you sign up through links we add later. We do not
         currently have live affiliate links. Rankings are by modeled all-in cost, not
-        commissions.{" "}
-        <span className="text-zinc-600">[Affiliate link placeholders — not live]</span>
+        commissions.
       </p>
     );
   }
@@ -35,11 +33,7 @@ export function AffiliateDisclosure({ compact = false }: { compact?: boolean }) 
         <a href="/methodology" className="text-amber-400 hover:underline">
           methodology
         </a>
-        ), never by commission rate.{" "}
-        <span className="text-zinc-600">
-          [Placeholder: affiliate CTAs will appear here once programs are approved — not
-          live yet.]
-        </span>
+        ), never by commission rate. There are currently no affiliate links on this site.
       </p>
     </aside>
   );

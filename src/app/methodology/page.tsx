@@ -107,7 +107,13 @@ allInPct     = allInCostUsd / invested`}
             Kraken spread is <strong className="text-zinc-200">estimated</strong>; documented
             trading fee on Instant/Recurring is 1%.
           </li>
-          <li>Cash App uses Auto Invest (0% / 0%), not Market Buy (2% at $100).</li>
+          <li>Cash App uses Auto Invest (0% fee / 0% spread per Cash App), not Market Buy (2% at $100 + possible spread).</li>
+          <li>
+            Strike recurring waives the <strong className="text-zinc-200">trading fee</strong>{" "}
+            after the first weekly buy, but Strike&apos;s fee FAQ targets an all-in{" "}
+            <strong className="text-zinc-200">spread of ~0.22%</strong> on every fill — we
+            model that as an ESTIMATE (actual may vary).
+          </li>
         </ul>
 
         <h2 className="text-lg font-medium text-zinc-100">Confidence labels</h2>

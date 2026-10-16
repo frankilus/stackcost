@@ -42,15 +42,15 @@ export const platforms: Platform[] = [
     name: "Strike",
     website: "https://strike.me",
     buyFeePct: 0,
-    spreadEstimatePct: 0,
-    spreadConfidence: "documented",
+    spreadEstimatePct: 0.0022,
+    spreadConfidence: "estimate",
     firstBuyPaysStandardFee: true,
     standardBuyFeePct: 0.0089,
-    fundingNotes: "ACH / linked bank; free DCA after first weekly purchase (personal accounts).",
+    fundingNotes: "ACH / linked bank; trading fee waived on recurring after first weekly purchase (personal accounts). Spread still applies.",
     withdrawalBtc: "On-chain / Lightning supported; network fees apply as shown at send.",
     custodyNotes: "Custodial balance; designed for frequent move-to-self-custody.",
     custodyMonthlyPct: 0,
-    pathModeled: "Weekly recurring buys (personal) — fee waived from 2nd purchase.",
+    pathModeled: "Weekly recurring buys (personal) — trading fee waived from 2nd purchase; ~0.22% target spread ESTIMATE on every buy.",
     sources: [
       {
         label: "Strike trading fees FAQ",
@@ -63,7 +63,7 @@ export const platforms: Platform[] = [
         accessed: "2026-10-15",
       },
     ],
-    notes: "One-time buys are tiered (0.89% at low volume). DCA path is the modeled all-in.",
+    notes: "Trading-fee waiver is separate from spread. Strike's fee FAQ states it 'targets an all-in spread of 0.22%' (actual may be higher/lower; reflected in quoted price). We model 0.22% as ESTIMATE on every purchase, plus 0.89% trading fee on the first weekly buy only. One-time buys remain fully tiered.",
   },
   {
     id: "river",
@@ -190,7 +190,7 @@ export const platforms: Platform[] = [
     withdrawalBtc: "Standard on-chain withdraw free (min ₿0.001 / 100k sats); Rush/Priority may fee.",
     custodyNotes: "Custodial; Bitkey pairing for self-custody path. Lightning available (not NY).",
     custodyMonthlyPct: 0,
-    pathModeled: "Auto Invest / Auto Buy recurring path (0% fee, 0% spread per Cash App fee page).",
+    pathModeled: "Auto Invest / Auto Buy / Round Ups only — documented 0% fee & 0% spread (NOT Market Buy).",
     sources: [
       {
         label: "Cash App bitcoin fees",
@@ -203,6 +203,6 @@ export const platforms: Platform[] = [
         accessed: "2026-10-15",
       },
     ],
-    notes: "If you use Market Buy instead of Auto Invest at $100, fee is 2.0% + possible 0–0.75% spread — much worse. Table models Auto Invest.",
+    notes: "Modeled path is Auto Invest / Auto Buy / Round Ups / Paid in Bitcoin only — Cash App's fee page (accessed 2026-10-15) states zero fees and zero spread on that path. Market Buy at $1–$499 is 2.0% plus a possible 0–0.75% spread and is NOT what this row models. Do not compare Market Buy numbers to this Auto Invest figure.",
   },
 ];

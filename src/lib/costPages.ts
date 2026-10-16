@@ -49,9 +49,10 @@ export const costPages: CostPage[] = [
     title: "Cash App Bitcoin Fees (2026): Auto Invest vs Market Buy True Cost",
     h1: "Cash App Bitcoin fees in 2026 — the true cost",
     intro:
-      "Cash App's fee depends entirely on how you buy. Per Cash App's fee page, Auto Invest (recurring) buys are 0% fee and 0% spread, while one-off market buys of $1–$499 cost 2.0% plus a possible spread. Path matters more than platform here.",
+      "Cash App's fee depends entirely on how you buy. Per Cash App's fee page (accessed 2026-10-15), Auto Invest, Round Ups, Paid in Bitcoin, and buys over $2,000 are 0% fee and 0% spread. One-off Market Buys of $1–$499 cost 2.0% plus a possible 0–0.75% spread. StackCost models Auto Invest only — Market Buy is a different, much more expensive path.",
     gotchas: [
-      "Market Buy at $1–$499 is 2.0% — using it instead of Auto Invest is one of the most expensive ways to DCA.",
+      "Market Buy at $1–$499 is 2.0% plus possible 0–0.75% spread — using it instead of Auto Invest is one of the most expensive ways to DCA.",
+      "Our $0 all-in figure applies ONLY to Auto Invest / Auto Buy / Round Ups / Paid in Bitcoin — not to one-off Market Buys.",
       "Standard on-chain withdrawals are free above the ₿0.001 (100k sats) minimum; Rush/Priority speeds can carry fees.",
       "Lightning is available but not in New York.",
       "Cash App is custodial; pairing with a self-custody wallet (e.g. Bitkey) is a separate step.",
@@ -69,7 +70,7 @@ export const costPages: CostPage[] = [
       },
       {
         q: "Is Cash App the cheapest way to DCA Bitcoin?",
-        a: "On the Auto Invest path, Cash App ties for the lowest modeled cost in our comparison. See the ranking for the full picture.",
+        a: "On the Auto Invest / Auto Buy path (0% fee and 0% spread per Cash App's fee page), Cash App is the lowest modeled cost in our $100/week comparison. Market Buy is much more expensive — do not confuse the two paths.",
       },
     ],
   },
@@ -79,26 +80,27 @@ export const costPages: CostPage[] = [
     title: "Strike Bitcoin Fees (2026): True Cost of Recurring Buys",
     h1: "Strike Bitcoin fees in 2026 — the true cost",
     intro:
-      "Strike waives the trading fee on recurring purchases for personal accounts after the first weekly buy. The first purchase pays the standard tiered fee (0.89% at low volume), so the all-in cost over a year is close to zero.",
+      "Strike waives the trading fee on recurring purchases for personal accounts after the first weekly buy (0.89% at low volume on that first buy). Separately, Strike's fee FAQ states it targets an all-in spread of ~0.22% on buys and sells — the fee waiver does not remove that spread. We model both.",
     gotchas: [
-      "Your first recurring purchase pays the standard tiered fee (0.89% at low volume).",
-      "One-time buys are tiered and not free — the waiver applies to recurring purchases.",
+      "Your first recurring purchase pays the standard tiered trading fee (0.89% at low volume).",
+      "The recurring trading-fee waiver does NOT remove spread — Strike targets ~0.22% all-in spread on every buy/sell (actual may vary; ESTIMATE).",
+      "One-time buys are fully tiered and not fee-free — the waiver applies only to recurring purchases.",
       "On-chain withdrawals pay the network fee shown at send; Lightning is typically cheaper.",
     ],
     cheaperPath:
-      "Set up a weekly recurring purchase rather than manual one-time buys, and withdraw over Lightning or in batches to minimize network fees.",
+      "Set up a weekly recurring purchase rather than manual one-time buys (to get the trading-fee waiver after week 1), and withdraw over Lightning or in batches to minimize network fees. Expect the ~0.22% target spread on each fill.",
     faqs: [
       {
         q: "Does Strike charge fees on recurring Bitcoin buys?",
-        a: "Strike states recurring purchases are fee-free for personal accounts after the first purchase. The first buy pays the standard fee (0.89% at low volume).",
+        a: "Strike states personal accounts pay zero trading fees on recurring purchases after the first week. The first buy pays the standard fee (0.89% at low volume). Spread is separate — see below.",
       },
       {
         q: "What are Strike's one-time buy fees?",
-        a: "One-time buys use a tiered schedule starting around 0.89% at low monthly volume.",
+        a: "One-time buys use a tiered schedule starting at 0.89% at low monthly volume (≤$4,999.99).",
       },
       {
         q: "Does Strike have a spread?",
-        a: "Strike documents its pricing on the fee FAQ; we model 0% spread on the recurring path based on that disclosure.",
+        a: "Yes. Strike's trading-fees FAQ (accessed 2026-10-15) states: 'Strike targets an all-in spread of 0.22%.' The actual spread may be higher or lower and is reflected in the quoted buy/sell price. The recurring trading-fee waiver does not eliminate this spread. We model 0.22% as an ESTIMATE on every purchase.",
       },
     ],
   },

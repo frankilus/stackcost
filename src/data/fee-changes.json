@@ -4,6 +4,13 @@
     {
       "date": "2026-10-15",
       "platformId": "strike",
+      "type": "spread-change",
+      "summary": "Model correction: Strike fee FAQ documents a target all-in spread of 0.22% on buys/sells, separate from the recurring trading-fee waiver. Changed spreadEstimatePct from 0% (documented) to 0.22% (estimate). Recurring path at $100/wk moves from ~$0.89/yr (first-buy fee only) to ~$12.33/yr (first-buy 0.89% + 0.22%\u00d752).",
+      "source": "https://strike.me/en/faq/what-are-the-bitcoin-trading-fees-on-strike/"
+    },
+    {
+      "date": "2026-10-15",
+      "platformId": "strike",
       "type": "baseline",
       "summary": "Baseline verification: recurring weekly DCA fee 0% after first purchase; standard buy fee 0.89% applies to first buy. No spread for this path per Strike.",
       "source": "https://strike.me/en/faq/what-are-the-bitcoin-trading-fees-on-strike/"
