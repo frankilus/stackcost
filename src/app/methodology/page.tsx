@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { AffiliateDisclosure } from "@/components/AffiliateDisclosure";
 import { LAST_UPDATED, SCENARIO, platforms } from "@/lib/platforms";
+import { getAllComparePairs } from "@/lib/compares";
 import { COMPARE_WEEKLIES, computeCost, formatPct, formatUsd } from "@/lib/calc";
 import { SITE_URL } from "@/lib/compares";
 
@@ -60,6 +61,9 @@ buyFees = weekly × standardBuyFeePct
 # Everyone else:
 buyFees = weekly × buyFeePct × weeks
 
+# Size-tiered fees (PayPal): buyFeePct = tier for the weekly order size
+#   $1–74.99: 2.20% · $75–200: 2.00% · $200.01–1,000: 1.80% · $1,000.01+: 1.50%
+
 spreadPaid = weekly × spreadEstimatePct × weeks
 
 avgBalance ≈ invested / 2   # linear DCA into custody
@@ -79,7 +83,8 @@ allInPct     = allInCostUsd / invested`}
 
         <h2 className="text-lg font-medium text-zinc-100">Head-to-head pages</h2>
         <p>
-          Every unique pair among the six platforms gets a compare URL (15 pages). The
+          Every unique pair among the original six platforms gets a compare URL (15 pages),
+          plus selected Robinhood and PayPal matchups ({getAllComparePairs().length} total). The
           “winner” is whoever has the lower modeled all-in cost at that weekly amount —
           never by affiliate status. See{" "}
           <Link href="/compare" className="text-amber-400 hover:underline">

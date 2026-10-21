@@ -7,8 +7,8 @@ import { costPages, HUB_SLUG } from "@/lib/costPages";
 import { platforms } from "@/lib/platforms";
 import { withdrawals, WITHDRAWALS_SLUG, WITHDRAWALS_VERIFIED } from "@/lib/withdrawals";
 
-const TITLE = "Bitcoin Withdrawal Fees by Platform (2026): Swan, Strike, Cash App, River, Kraken, Coinbase";
-const DESC = `What it costs to move bitcoin to your own wallet from six US apps — free paths, flat fees, Lightning, minimums. Sourced from each platform's own pages. Verified ${WITHDRAWALS_VERIFIED}.`;
+const TITLE = "Bitcoin Withdrawal Fees by Platform (2026): Swan, Strike, Cash App, River, Kraken, Coinbase, Robinhood, PayPal";
+const DESC = `What it costs to move bitcoin to your own wallet from ${withdrawals.length} US apps — free paths, flat fees, Lightning, minimums. Sourced from each platform's own pages. Verified ${WITHDRAWALS_VERIFIED}.`;
 const URL = `${SITE_URL}/costs/${WITHDRAWALS_SLUG}`;
 
 export const metadata: Metadata = {
@@ -30,7 +30,7 @@ export default function WithdrawalFees() {
   const faqs = [
     {
       q: "Which Bitcoin apps let you withdraw for free?",
-      a: `Per their own fee pages (checked ${WITHDRAWALS_VERIFIED}): ${freeNames.join(", ")} each document a zero-fee on-chain withdrawal path (Strike at its Flexible ~24h speed, Cash App at standard speed). River gives one free on-chain send per month. Kraken and Coinbase charge on every on-chain withdrawal.`,
+      a: `Per their own fee pages (checked ${WITHDRAWALS_VERIFIED}): ${freeNames.join(", ")} each document a zero-fee on-chain withdrawal path (Strike at its Flexible ~24h speed, Cash App at standard speed). River gives one free on-chain send per month. Kraken and Coinbase charge on every on-chain withdrawal. Robinhood and PayPal add no fee of their own but pass through a variable network fee.`,
     },
     {
       q: "How much does Kraken charge to withdraw Bitcoin?",

@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { AffiliateDisclosure } from "@/components/AffiliateDisclosure";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { COMPARE_WEEKLIES, computeCost, formatPct, formatUsd } from "@/lib/calc";
-import { SITE_URL } from "@/lib/compares";
+import { getPairsForPlatform, SITE_URL } from "@/lib/compares";
 import { costPages, getCostPage, HUB_SLUG } from "@/lib/costPages";
 import { LAST_UPDATED, platforms } from "@/lib/platforms";
 
@@ -181,6 +181,18 @@ export default async function CostPageView({ params }: { params: Promise<{ slug:
             );
           })}
         </ul>
+        {getPairsForPlatform(p.id).length > 0 ? (
+          <>
+            <h3 className="mt-6 text-sm font-semibold uppercase tracking-wide text-zinc-400">Head-to-head</h3>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {getPairsForPlatform(p.id).map((pair) => (
+                <li key={pair.slug}>
+                  <Link href={`/compare/${pair.slug}`} className="inline-block rounded-lg border border-zinc-800 bg-zinc-900/50 px-3 py-1.5 text-sm text-zinc-300 hover:border-amber-500/40 hover:text-amber-400">{pair.a.name} vs {pair.b.name}</Link>
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : null}
       </section>
 
       <section id="alerts" className="mt-12 rounded-xl border border-zinc-800 bg-zinc-900/40 p-6 sm:p-8">

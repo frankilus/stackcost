@@ -5,7 +5,7 @@
       "date": "2026-10-15",
       "platformId": "strike",
       "type": "spread-change",
-      "summary": "Model correction: Strike fee FAQ documents a target all-in spread of 0.22% on buys/sells, separate from the recurring trading-fee waiver. Changed spreadEstimatePct from 0% (documented) to 0.22% (estimate). Recurring path at $100/wk moves from ~$0.89/yr (first-buy fee only) to ~$12.33/yr (first-buy 0.89% + 0.22%\u00d752).",
+      "summary": "Model correction: Strike fee FAQ documents a target all-in spread of 0.22% on buys/sells, separate from the recurring trading-fee waiver. Changed spreadEstimatePct from 0% (documented) to 0.22% (estimate). Recurring path at $100/wk moves from ~$0.89/yr (first-buy fee only) to ~$12.33/yr (first-buy 0.89% + 0.22%×52).",
       "source": "https://strike.me/en/faq/what-are-the-bitcoin-trading-fees-on-strike/"
     },
     {
@@ -49,6 +49,20 @@
       "type": "baseline",
       "summary": "Baseline verification: auto-invest fee modeled at 0% with no separate spread for the modeled path, per Cash App disclosures.",
       "source": "https://cash.app/bitcoin/fees"
+    },
+    {
+      "date": "2026-10-21",
+      "platformId": "robinhood",
+      "type": "baseline",
+      "summary": "Baseline added: recurring BTC buy on default market maker routing has no commission. Robinhood discloses receiving $0.95 per $100 of market-maker-routed crypto volume (as of 2026-06-15), included in the spread; modeled as a 0.95% spread ESTIMATE (floor). Exchange routing alternative: 0.95% taker fee at $0–$10K volume.",
+      "source": "https://robinhood.com/us/en/support/articles/crypto-order-routing/"
+    },
+    {
+      "date": "2026-10-21",
+      "platformId": "paypal",
+      "type": "baseline",
+      "summary": "Baseline added: Recurring Buy fee 2.00% for $75.00–$200.00 orders (2.20% under $75; 1.80% $200.01–$1,000; 1.50% above). Spread modeled at PayPal's own stated estimate of 1.00% (ESTIMATE). Venmo lists the identical crypto fee table but documents no general recurring BTC buy.",
+      "source": "https://www.paypal.com/us/legalhub/paypal/cryptocurrencies-tnc"
     }
   ]
 }

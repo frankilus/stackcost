@@ -191,6 +191,75 @@ export const costPages: CostPage[] = [
       },
     ],
   },
+  {
+    slug: "robinhood-bitcoin-fees",
+    platformId: "robinhood",
+    title: "Robinhood Bitcoin Fees (2026): True Cost of Recurring Crypto Buys",
+    h1: "Robinhood Bitcoin fees in 2026 — the true cost",
+    intro:
+      "Robinhood advertises no commission on crypto, but that does not mean free. On the default in-app setting (market maker routing), Robinhood says it receives $0.95 for every $100 of crypto volume from its market makers, and that this payment is included in the spread you pay. So a $100 recurring Bitcoin buy carries a spread of at least about 0.95%. We model 0.95% as an ESTIMATE.",
+    gotchas: [
+      "\"No commission\" on market maker routing. The cost sits in the spread: Robinhood discloses a 0.95% market-maker payment that is part of that spread (ESTIMATE floor; can be higher).",
+      "Exchange routing swaps the spread markup for an explicit fee: 0.95% taker at $0–$10K 30-day volume, plus the exchange's market spread. At $100/week it is not cheaper.",
+      "Recurring crypto orders run around 5:30–7:00 PM ET and are placed as limits collared up to 1% above last trade. If the price jumps more than 1%, that week's buy is skipped.",
+      "Robinhood charges $0 for crypto transfers, but the Bitcoin network fee still applies.",
+    ],
+    cheaperPath:
+      "For pure Bitcoin DCA, a platform with a free recurring path and a smaller disclosed spread (Strike's ~0.22% target, or Cash App Auto Invest at 0%) costs less than Robinhood's ~0.95%+ spread.",
+    faqs: [
+      {
+        q: "Does Robinhood charge fees on recurring Bitcoin buys?",
+        a: "On the default market maker routing there is no commission. Robinhood is paid through the spread: its order-routing page says it receives $0.95 per $100 of market-maker-routed crypto volume, included in the spread. We model that as a ~0.95% spread (ESTIMATE, a floor), about $49 a year at $100/week.",
+      },
+      {
+        q: "What is Robinhood's crypto spread?",
+        a: "Robinhood does not publish a fixed spread. Its example shows a 0.96% buy spread on a $100 order, of which Robinhood keeps $0.95. You can see the live bid/ask on the order review screen before you buy.",
+      },
+      {
+        q: "Is exchange routing cheaper on Robinhood?",
+        a: "Not at small sizes. Exchange routing charges a 0.95% taker fee at $0–$10K of 30-day volume, plus the exchange's market spread. Fees fall at higher volume tiers.",
+      },
+      {
+        q: "Does Robinhood charge to withdraw Bitcoin?",
+        a: "Robinhood's fee schedule lists $0 for crypto transfers. Every on-chain transfer still pays a network fee that varies with activity.",
+      },
+    ],
+  },
+  {
+    slug: "paypal-bitcoin-fees",
+    platformId: "paypal",
+    title: "PayPal (and Venmo) Bitcoin Fees (2026): True Cost of Recurring Buys",
+    h1: "PayPal Bitcoin fees in 2026 — the true cost",
+    intro:
+      "PayPal Recurring Buys pay a documented tiered fee (2.00% on a $100 buy) plus a spread that PayPal itself estimates at 1.00% in its crypto terms. That is about 3% all-in at $100/week, the most expensive path we model. Venmo uses the same fee table.",
+    gotchas: [
+      "Fee tiers: 2.20% on $1–$74.99, 2.00% on $75–$200, 1.80% on $200.01–$1,000, 1.50% above $1,000. Small weekly buys sit in the expensive tiers.",
+      "The spread is on top of the fee. PayPal's terms state an 'estimated spread of one percent (1.00%)' that may be higher or lower, and PayPal does not disclose it per transaction (ESTIMATE).",
+      "The exchange rate for future Recurring Buys is not shown when you set them up and may vary significantly.",
+      "Sending BTC to an outside wallet has no PayPal fee, but a variable network fee applies.",
+      "Venmo shares this fee table but documents no general recurring Bitcoin buy, only Cash Back to Crypto.",
+    ],
+    cheaperPath:
+      "Buying less often in larger amounts lowers the fee tier (1.80% from $200.01). Either way, dedicated DCA apps with free recurring buys (Cash App Auto Invest, Strike, River) cost a fraction of PayPal's ~3%.",
+    faqs: [
+      {
+        q: "How much does PayPal charge for recurring Bitcoin buys?",
+        a: "Recurring Buys pay the same tiered fee as one-time buys: 2.00% on a $100 order (2.20% under $75). Add PayPal's estimated 1.00% spread for about 3% all-in, roughly $156 a year at $100/week.",
+      },
+      {
+        q: "What is PayPal's crypto spread?",
+        a: "PayPal's Cryptocurrency Terms say the exchange rate includes an estimated spread of 1.00%, which may be higher or lower with market conditions. PayPal does not calculate or disclose the spread on each transaction.",
+      },
+      {
+        q: "Are Venmo's Bitcoin fees the same as PayPal's?",
+        a: "Yes, the fee table matches: 2.20% / 2.00% / 1.80% / 1.50% by amount, and Venmo crypto is also run by PayPal Digital. Venmo says its exchange rate includes a spread. Venmo's help pages document no general recurring Bitcoin buy.",
+      },
+      {
+        q: "Can I withdraw Bitcoin from PayPal?",
+        a: "Yes. Transfers to an outside address have no PayPal fee, but a variable crypto network fee is charged and shown before you send.",
+      },
+    ],
+  },
 ];
 
 export function getCostPage(slug: string) {

@@ -8,7 +8,7 @@ import { costPages, HUB_SLUG } from "@/lib/costPages";
 import { LAST_UPDATED, platforms } from "@/lib/platforms";
 
 const TITLE = "Cheapest Way to DCA Bitcoin in the US (2026): All-In Cost Ranking";
-const DESC = `Six US Bitcoin DCA platforms ranked by true all-in cost — fees, spread, custody — at $25, $100, $500/week. Sources linked. Updated ${LAST_UPDATED}.`;
+const DESC = `${platforms.length} US Bitcoin DCA platforms ranked by true all-in cost — fees, spread, custody — at $25, $100, $500/week. Sources linked. Updated ${LAST_UPDATED}.`;
 
 export const metadata: Metadata = {
   title: `${TITLE} | StackCost`,
@@ -32,8 +32,8 @@ export default function Hub() {
       a: "Buy fees, documented or estimated spread, and modeled custody fees over 52 weekly buys. Network miner fees for withdrawals are excluded because they vary.",
     },
     {
-      q: "Why is Coinbase or Kraken more expensive?",
-      a: "Their default app recurring-buy paths charge a percentage fee plus an embedded spread. Their advanced/pro order books are cheaper but don't offer automatic DCA.",
+      q: "Why are Coinbase, Kraken, Robinhood and PayPal more expensive?",
+      a: "Their default recurring-buy paths charge a percentage fee, an embedded spread, or both. Robinhood has no commission but discloses a ~0.95% market-maker payment inside the spread. PayPal charges 2.00% on a $100 buy plus an estimated 1.00% spread. Coinbase Advanced and Kraken Pro order books are cheaper but don't offer automatic DCA.",
     },
   ];
   const jsonLd = [
@@ -52,7 +52,7 @@ export default function Hub() {
         <p className="text-xs font-medium uppercase tracking-widest text-amber-500/90">Ranking · Updated {LAST_UPDATED}</p>
         <h1 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">The cheapest way to DCA Bitcoin in the US (2026)</h1>
         <p className="mt-4 text-base leading-relaxed text-zinc-300">
-          We ranked six US platforms by the true all-in cost of a weekly recurring Bitcoin buy — fees, spread, and custody — not the headline fee.
+          We ranked {platforms.length} US platforms by the true all-in cost of a weekly recurring Bitcoin buy — fees, spread, and custody — not the headline fee.
           At $100/week, <strong className="text-amber-400">{best.p.name}</strong> is cheapest at {formatUsd(best.costs[1].allInCostUsd)} per year on its modeled path.
         </p>
       </header>
@@ -81,7 +81,7 @@ export default function Hub() {
           </tbody>
         </table>
       </section>
-      <p className="mt-3 text-xs text-zinc-500">52 weekly buys. Spreads marked estimate on Strike, Coinbase, Kraken, River. Withdrawal/miner fees excluded — see <Link href="/costs/bitcoin-withdrawal-fees" className="text-amber-400 hover:underline">Bitcoin withdrawal fees</Link>. <Link href="/methodology" className="text-amber-400 hover:underline">Methodology</Link> · <Link href="/compare" className="text-amber-400 hover:underline">Head-to-head pages</Link> · <Link href="/fee-changes" className="text-amber-400 hover:underline">Fee change log</Link></p>
+      <p className="mt-3 text-xs text-zinc-500">52 weekly buys. Spreads marked estimate on Strike, Coinbase, Kraken, River, Robinhood, PayPal. Withdrawal/miner fees excluded — see <Link href="/costs/bitcoin-withdrawal-fees" className="text-amber-400 hover:underline">Bitcoin withdrawal fees</Link>. <Link href="/methodology" className="text-amber-400 hover:underline">Methodology</Link> · <Link href="/compare" className="text-amber-400 hover:underline">Head-to-head pages</Link> · <Link href="/fee-changes" className="text-amber-400 hover:underline">Fee change log</Link></p>
 
       <section className="mt-10">
         <h2 className="text-xl font-semibold text-zinc-50">FAQ</h2>

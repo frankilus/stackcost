@@ -152,7 +152,7 @@ export default function HomePage() {
             <div>
               <h2 className="text-2xl font-semibold text-zinc-50">Head-to-head</h2>
               <p className="mt-1 text-sm text-zinc-500">
-                15 pair pages with $25 / $100 / $500 weekly all-in for 1 year.
+                {getAllComparePairs().length} pair pages with $25 / $100 / $500 weekly all-in for 1 year.
               </p>
             </div>
             <Link href="/compare" className="text-sm text-amber-400 hover:underline">

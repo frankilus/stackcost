@@ -111,4 +111,33 @@ export const withdrawals: WithdrawalPolicy[] = [
       { label: "Coinbase pricing & fees disclosures", url: "https://help.coinbase.com/en/coinbase/trading-and-funding/pricing-and-fees/fees" },
     ],
   },
+  {
+    platformId: "robinhood",
+    headline: "$0 Robinhood fee + network fee",
+    freeOnchainPath: "no",
+    freePathDetail: "No free on-chain path documented. Robinhood itself charges nothing for transfers.",
+    paidPathDetail: "Every crypto transfer pays a blockchain network fee that varies with network activity.",
+    lightning: "Not covered on the cited Robinhood pages.",
+    minimum: "Not stated on the fee schedule.",
+    confidence: "varies",
+    tip: "Batch withdrawals so the network fee is a smaller share of what you move.",
+    sources: [
+      { label: "Robinhood Crypto fee schedule (PDF)", url: "https://cdn.robinhood.com/assets/robinhood/legal/rhc-fee-schedule.pdf" },
+    ],
+  },
+  {
+    platformId: "paypal",
+    headline: "Network fee (varies); no PayPal fee",
+    freeOnchainPath: "no",
+    freePathDetail: "No free external path documented. Transfers to other PayPal or Venmo crypto accounts are free.",
+    paidPathDetail: "Sending to an address outside PayPal/Venmo pays a variable crypto network fee, shown right before you transfer.",
+    lightning: "Not covered on PayPal's fee page.",
+    minimum: "Not stated on the fee page.",
+    confidence: "varies",
+    tip: "Venmo uses the same rule. Check the network fee on the confirm screen and batch transfers.",
+    sources: [
+      { label: "PayPal consumer fees", url: "https://www.paypal.com/us/digital-wallet/paypal-consumer-fees" },
+      { label: "Venmo fees", url: "https://venmo.com/resources/our-fees/" },
+    ],
+  },
 ];

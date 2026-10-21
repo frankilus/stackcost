@@ -1,6 +1,6 @@
 /**
  * StackCost platform fee data — US-focused DCA comparison.
- * lastUpdated: 2026-10-15 (America/New_York)
+ * lastUpdated: 2026-10-21 (America/New_York). Original six re-verified 2026-10-21 (no changes); Robinhood and PayPal added.
  * All figures labeled from public fee pages; estimates marked clearly.
  */
 
@@ -19,6 +19,8 @@ export interface Platform {
   firstBuyPaysStandardFee: boolean;
   /** Standard (non-DCA) fee used for first buy when waiver applies. */
   standardBuyFeePct: number;
+  /** Optional per-order fee tiers (ascending maxUsd). When set, overrides buyFeePct/standardBuyFeePct by order size. */
+  buyFeeTiers?: { maxUsd: number; pct: number }[];
   fundingNotes: string;
   withdrawalBtc: string;
   custodyNotes: string;
@@ -29,7 +31,7 @@ export interface Platform {
   notes: string;
 }
 
-export const LAST_UPDATED = "2026-10-15";
+export const LAST_UPDATED = "2026-10-21";
 export const SCENARIO = {
   weeklyUsd: 100,
   weeks: 52,
@@ -204,5 +206,77 @@ export const platforms: Platform[] = [
       },
     ],
     notes: "Modeled path is Auto Invest / Auto Buy / Round Ups / Paid in Bitcoin only — Cash App's fee page (accessed 2026-10-15) states zero fees and zero spread on that path. Market Buy at $1–$499 is 2.0% plus a possible 0–0.75% spread and is NOT what this row models. Do not compare Market Buy numbers to this Auto Invest figure.",
+  },
+  {
+    id: "robinhood",
+    name: "Robinhood",
+    website: "https://robinhood.com/us/en/crypto/",
+    buyFeePct: 0,
+    spreadEstimatePct: 0.0095,
+    spreadConfidence: "estimate",
+    firstBuyPaysStandardFee: false,
+    standardBuyFeePct: 0,
+    fundingNotes: "Recurring crypto orders funded by buying power or linked bank. Default in-app routing is market maker routing: no commission, cost is in the spread.",
+    withdrawalBtc: "Robinhood charges $0 for crypto transfers; the Bitcoin network fee still applies and varies.",
+    custodyNotes: "Custodial (Robinhood Crypto); no custody fee.",
+    custodyMonthlyPct: 0,
+    pathModeled: "Recurring BTC buy on default market maker routing: $0 commission + ~0.95% spread ESTIMATE (floor from Robinhood's disclosed 0.95% market-maker payment, which is included in the spread).",
+    sources: [
+      {
+        label: "Robinhood crypto order routing (0.95% market-maker payment disclosure)",
+        url: "https://robinhood.com/us/en/support/articles/crypto-order-routing/",
+        accessed: "2026-10-21",
+      },
+      {
+        label: "Robinhood Crypto fee schedule (PDF)",
+        url: "https://cdn.robinhood.com/assets/robinhood/legal/rhc-fee-schedule.pdf",
+        accessed: "2026-10-21",
+      },
+      {
+        label: "Robinhood recurring investments",
+        url: "https://robinhood.com/us/en/support/articles/recurring-investments/",
+        accessed: "2026-10-21",
+      },
+    ],
+    notes: "Robinhood's order-routing page states that, as of June 15, 2026, Robinhood Crypto receives $0.95 per $100 of market-maker-routed crypto volume, and that this amount is included in the spread (its example: a 0.96% buy spread, of which Robinhood gets $0.95). So the buy spread is at least ~0.95%. We model 0.95% as an ESTIMATE; the real spread can be higher, especially in volatile markets. Alternative: exchange routing charges an explicit fee (0.95% taker at $0–$10K 30-day volume) plus the exchange's market spread, so it is not cheaper at $100/week. Recurring orders are placed as limits collared up to 1% above last trade.",
+  },
+  {
+    id: "paypal",
+    name: "PayPal",
+    website: "https://www.paypal.com/us/digital-wallet/manage-money/crypto",
+    buyFeePct: 0.02,
+    spreadEstimatePct: 0.01,
+    spreadConfidence: "estimate",
+    firstBuyPaysStandardFee: false,
+    standardBuyFeePct: 0.02,
+    buyFeeTiers: [
+      { maxUsd: 74.99, pct: 0.022 },
+      { maxUsd: 200, pct: 0.02 },
+      { maxUsd: 1000, pct: 0.018 },
+      { maxUsd: Infinity, pct: 0.015 },
+    ],
+    fundingNotes: "Recurring Buy (daily/weekly/biweekly/monthly) from a linked bank, debit card or PayPal balance. Tiered fee: 2.00% on $75.00–$200.00 buys (2.20% under $75).",
+    withdrawalBtc: "No PayPal fee to send to an external address, but a variable crypto network fee is charged (shown before you transfer).",
+    custodyNotes: "Custodial (PayPal Digital, Inc.); no fee for holding crypto.",
+    custodyMonthlyPct: 0,
+    pathModeled: "Weekly Recurring Buy of $100: documented 2.00% fee + 1.00% spread ESTIMATE (PayPal's own stated estimate). Venmo uses the same fee table (see notes).",
+    sources: [
+      {
+        label: "PayPal consumer fees (crypto buy/sell table)",
+        url: "https://www.paypal.com/us/digital-wallet/paypal-consumer-fees",
+        accessed: "2026-10-21",
+      },
+      {
+        label: "PayPal Cryptocurrency Terms (Recurring Buys; 'estimated spread of one percent')",
+        url: "https://www.paypal.com/us/legalhub/paypal/cryptocurrencies-tnc",
+        accessed: "2026-10-21",
+      },
+      {
+        label: "Venmo fees (same crypto fee table)",
+        url: "https://venmo.com/resources/our-fees/",
+        accessed: "2026-10-21",
+      },
+    ],
+    notes: "PayPal's crypto terms say each Recurring Buy includes a transaction fee and an exchange rate including PayPal's spread, and that 'the exchange rate will include an estimated spread of one percent (1.00%)… the actual spread may be higher or lower based on market conditions.' We use that 1.00% as an ESTIMATE. The 2.00% fee is documented for $75–$200 orders. Venmo: crypto on Venmo is also run by PayPal Digital (dba Venmo Digital) and Venmo's fee page lists the identical 2.20% / 2.00% / 1.80% / 1.50% table, so we model this once. Venmo's help pages document no general recurring Bitcoin buy (only Cash Back to Crypto for Venmo Credit Card rewards), so Venmo is not ranked as a separate DCA path.",
   },
 ];

@@ -24,6 +24,8 @@ export type CompareWeekly = (typeof COMPARE_WEEKLIES)[number];
  *
  * invested = weekly * weeks
  *
+ * If the platform publishes per-order fee tiers (e.g. PayPal), the tier matching the weekly amount is used.
+ *
  * If firstBuyPaysStandardFee:
  *   buyFees = weekly * standardBuyFeePct  +  weekly * buyFeePct * (weeks - 1)
  * Else:
@@ -47,12 +49,16 @@ export function computeCost(
 ): CostBreakdown {
   const invested = weeklyUsd * weeks;
 
+  const tier = p.buyFeeTiers?.find((t) => weeklyUsd <= t.maxUsd);
+  const feePct = tier ? tier.pct : p.buyFeePct;
+  const standardPct = tier ? tier.pct : p.standardBuyFeePct;
+
   let buyFeesPaid: number;
   if (p.firstBuyPaysStandardFee) {
     buyFeesPaid =
-      weeklyUsd * p.standardBuyFeePct + weeklyUsd * p.buyFeePct * (weeks - 1);
+      weeklyUsd * standardPct + weeklyUsd * feePct * (weeks - 1);
   } else {
-    buyFeesPaid = weeklyUsd * p.buyFeePct * weeks;
+    buyFeesPaid = weeklyUsd * feePct * weeks;
   }
 
   const spreadPaid = weeklyUsd * p.spreadEstimatePct * weeks;

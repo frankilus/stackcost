@@ -8,7 +8,7 @@ import { LAST_UPDATED } from "@/lib/platforms";
 export const metadata: Metadata = {
   title: "Compare Bitcoin DCA platforms — StackCost",
   description:
-    "Head-to-head all-in cost comparisons for Strike, River, Swan, Coinbase, Kraken, and Cash App weekly Bitcoin DCA.",
+    "Head-to-head all-in cost comparisons for Strike, River, Swan, Coinbase, Kraken, Cash App, Robinhood, and PayPal weekly Bitcoin DCA.",
   alternates: { canonical: `${SITE_URL}/compare` },
 };
 
@@ -39,7 +39,8 @@ export default function CompareIndexPage() {
       </Link>
       <h1 className="mt-4 text-3xl font-semibold text-zinc-50">Head-to-head comparisons</h1>
       <p className="mt-2 max-w-2xl text-sm text-zinc-400">
-        All unique pairs among Strike, River, Swan, Coinbase, Kraken, and Cash App. Each
+        All unique pairs among Strike, River, Swan, Coinbase, Kraken, and Cash App, plus
+        selected Robinhood and PayPal matchups. Each
         page shows all-in cost at $25 / $100 / $500 weekly for 1 year. Fee data last
         verified {LAST_UPDATED} (ET).
       </p>

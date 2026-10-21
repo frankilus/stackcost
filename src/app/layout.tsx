@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "StackCost — The real all-in cost to DCA Bitcoin",
     description:
-      "Fees + spreads + custody for recurring Bitcoin buys on 6 US platforms. Find the cheapest DCA path.",
+      "Fees + spreads + custody for recurring Bitcoin buys on 8 US platforms. Find the cheapest DCA path.",
     type: "website",
     url: SITE_URL,
     siteName: "StackCost",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "StackCost — Cheapest way to DCA Bitcoin (US)",
-    description: "True all-in cost of recurring Bitcoin buys across 6 US platforms.",
+    description: "True all-in cost of recurring Bitcoin buys across 8 US platforms.",
   },
 };
 
