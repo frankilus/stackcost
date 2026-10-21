@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { getAllComparePairs, SITE_URL } from "@/lib/compares";
 import { costPages, HUB_SLUG } from "@/lib/costPages";
 import { LAST_UPDATED } from "@/lib/platforms";
+import { WITHDRAWALS_SLUG, WITHDRAWALS_VERIFIED } from "@/lib/withdrawals";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date(`${LAST_UPDATED}T12:00:00-04:00`);
@@ -31,6 +32,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: "weekly",
       priority: 0.95,
+    },
+    {
+      url: `${SITE_URL}/costs/${WITHDRAWALS_SLUG}`,
+      lastModified: new Date(`${WITHDRAWALS_VERIFIED}T12:00:00-04:00`),
+      changeFrequency: "weekly",
+      priority: 0.9,
     },
     {
       url: `${SITE_URL}/fee-changes`,

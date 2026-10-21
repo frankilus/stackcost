@@ -81,7 +81,7 @@ export default function Hub() {
           </tbody>
         </table>
       </section>
-      <p className="mt-3 text-xs text-zinc-500">52 weekly buys. Spreads marked estimate on Coinbase, Kraken, River. Miner fees excluded. <Link href="/methodology" className="text-amber-400 hover:underline">Methodology</Link> · <Link href="/compare" className="text-amber-400 hover:underline">Head-to-head pages</Link> · <Link href="/fee-changes" className="text-amber-400 hover:underline">Fee change log</Link></p>
+      <p className="mt-3 text-xs text-zinc-500">52 weekly buys. Spreads marked estimate on Strike, Coinbase, Kraken, River. Withdrawal/miner fees excluded — see <Link href="/costs/bitcoin-withdrawal-fees" className="text-amber-400 hover:underline">Bitcoin withdrawal fees</Link>. <Link href="/methodology" className="text-amber-400 hover:underline">Methodology</Link> · <Link href="/compare" className="text-amber-400 hover:underline">Head-to-head pages</Link> · <Link href="/fee-changes" className="text-amber-400 hover:underline">Fee change log</Link></p>
 
       <section className="mt-10">
         <h2 className="text-xl font-semibold text-zinc-50">FAQ</h2>

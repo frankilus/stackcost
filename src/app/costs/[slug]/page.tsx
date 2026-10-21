@@ -135,7 +135,7 @@ export default async function CostPageView({ params }: { params: Promise<{ slug:
           <p className="mt-3 text-sm leading-relaxed text-zinc-300">{page.cheaperPath}</p>
           <ul className="mt-4 space-y-1 text-sm text-zinc-400">
             <li><strong className="text-zinc-300">Funding:</strong> {p.fundingNotes}</li>
-            <li><strong className="text-zinc-300">Withdrawals:</strong> {p.withdrawalBtc}</li>
+            <li><strong className="text-zinc-300">Withdrawals:</strong> {p.withdrawalBtc} <Link href={`/costs/bitcoin-withdrawal-fees#${p.id}`} className="text-amber-400 hover:underline">Compare withdrawal fees →</Link></li>
             <li><strong className="text-zinc-300">Custody:</strong> {p.custodyNotes}</li>
           </ul>
         </div>

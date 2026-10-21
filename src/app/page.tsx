@@ -16,6 +16,11 @@ const hubs = [
     body: "Ranked all-in cost for recurring buys — the short answer.",
   },
   {
+    href: "/costs/bitcoin-withdrawal-fees",
+    title: "Bitcoin withdrawal fees",
+    body: "Which apps let you move BTC to your own wallet for free.",
+  },
+  {
     href: "/compare",
     title: "Head-to-head comparisons",
     body: "Platform vs platform at $25, $100 and $500 per week.",
@@ -92,7 +97,7 @@ export default function HomePage() {
 
       <section className="mx-auto max-w-6xl px-4 pt-10 sm:px-6">
         <h2 className="sr-only">Explore StackCost</h2>
-        <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {hubs.map((h) => (
             <li key={h.href}>
               <Link

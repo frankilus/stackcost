@@ -53,7 +53,7 @@ export const costPages: CostPage[] = [
     gotchas: [
       "Market Buy at $1–$499 is 2.0% plus possible 0–0.75% spread — using it instead of Auto Invest is one of the most expensive ways to DCA.",
       "Our $0 all-in figure applies ONLY to Auto Invest / Auto Buy / Round Ups / Paid in Bitcoin — not to one-off Market Buys.",
-      "Standard on-chain withdrawals are free above the ₿0.001 (100k sats) minimum; Rush/Priority speeds can carry fees.",
+      "Standard-speed on-chain withdrawals are free above the 100k-sat (₿0.001) minimum per Cash App's fee page; any faster option shows its fee before you confirm.",
       "Lightning is available but not in New York.",
       "Cash App is custodial; pairing with a self-custody wallet (e.g. Bitkey) is a separate step.",
     ],
@@ -66,7 +66,7 @@ export const costPages: CostPage[] = [
       },
       {
         q: "How much does Cash App charge to withdraw Bitcoin?",
-        a: "Standard on-chain withdrawals are free with a ₿0.001 minimum. Faster Rush/Priority options may charge a fee.",
+        a: "Per Cash App's fee page, standard-speed withdrawals are free (minimum 100,000 sats / ₿0.001) and complete within 24 hours. Any faster option shows its fee before you confirm.",
       },
       {
         q: "Is Cash App the cheapest way to DCA Bitcoin?",
@@ -85,10 +85,10 @@ export const costPages: CostPage[] = [
       "Your first recurring purchase pays the standard tiered trading fee (0.89% at low volume).",
       "The recurring trading-fee waiver does NOT remove spread — Strike targets ~0.22% all-in spread on every buy/sell (actual may vary; ESTIMATE).",
       "One-time buys are fully tiered and not fee-free — the waiver applies only to recurring purchases.",
-      "On-chain withdrawals pay the network fee shown at send; Lightning is typically cheaper.",
+      "On-chain withdrawals are free at Flexible speed (~24h) and via auto-withdrawal; Priority/Standard speeds pay an on-chain fee shown at send.",
     ],
     cheaperPath:
-      "Set up a weekly recurring purchase rather than manual one-time buys (to get the trading-fee waiver after week 1), and withdraw over Lightning or in batches to minimize network fees. Expect the ~0.22% target spread on each fill.",
+      "Set up a weekly recurring purchase rather than manual one-time buys (to get the trading-fee waiver after week 1), and withdraw at the free Flexible speed (or set an auto-withdrawal) to avoid on-chain fees. Expect the ~0.22% target spread on each fill.",
     faqs: [
       {
         q: "Does Strike charge fees on recurring Bitcoin buys?",

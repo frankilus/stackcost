@@ -82,6 +82,9 @@ export default function RootLayout({
               <a href="/costs/cheapest-bitcoin-dca-us" className="hover:text-zinc-100">
                 Cheapest
               </a>
+              <a href="/costs/bitcoin-withdrawal-fees" className="hover:text-zinc-100">
+                Withdrawals
+              </a>
               <a href="/compare" className="hover:text-zinc-100">
                 Compare
               </a>
