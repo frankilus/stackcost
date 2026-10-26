@@ -21,6 +21,11 @@ const hubs = [
     body: "Which apps let you move BTC to your own wallet for free.",
   },
   {
+    href: "/calculator",
+    title: "DCA fee calculator",
+    body: "Any weekly or monthly amount — ranked yearly all-in cost.",
+  },
+  {
     href: "/compare",
     title: "Head-to-head comparisons",
     body: "Platform vs platform at $25, $100 and $500 per week.",
@@ -74,6 +79,12 @@ export default function HomePage() {
               View comparison
             </a>
             <Link
+              href="/calculator"
+              className="rounded-lg border border-zinc-700 px-5 py-2.5 text-sm font-medium text-zinc-200 hover:border-zinc-500"
+            >
+              Calculator
+            </Link>
+            <Link
               href="/compare"
               className="rounded-lg border border-zinc-700 px-5 py-2.5 text-sm font-medium text-zinc-200 hover:border-zinc-500"
             >
@@ -97,7 +108,7 @@ export default function HomePage() {
 
       <section className="mx-auto max-w-6xl px-4 pt-10 sm:px-6">
         <h2 className="sr-only">Explore StackCost</h2>
-        <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {hubs.map((h) => (
             <li key={h.href}>
               <Link

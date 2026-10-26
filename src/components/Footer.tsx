@@ -26,6 +26,10 @@ export function Footer() {
             Cheapest DCA
           </Link>
           <span aria-hidden>·</span>
+          <Link href="/calculator" className="hover:text-amber-400">
+            DCA calculator
+          </Link>
+          <span aria-hidden>·</span>
           <Link href="/costs/bitcoin-withdrawal-fees" className="hover:text-amber-400">
             Withdrawal fees
           </Link>
