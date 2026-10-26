@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "StackCost — Cheapest Way to DCA Bitcoin in the US (2026 True-Cost Comparison)",
   description:
-    "Compare the true all-in cost of recurring Bitcoin buys on Strike, River, Swan, Coinbase, Kraken and Cash App. Fees, spreads, custody and withdrawals modeled for $100/week DCA — sources linked, estimates labeled.",
+    "True all-in cost of recurring Bitcoin buys on Cash App, Strike, River, Robinhood, Swan, Kraken, Coinbase and PayPal. Fees, spreads and custody modeled for $100/week DCA — sources linked, estimates labeled.",
   openGraph: {
     title: "StackCost — The real all-in cost to DCA Bitcoin",
     description:
