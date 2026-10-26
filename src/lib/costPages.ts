@@ -110,10 +110,10 @@ export const costPages: CostPage[] = [
     title: "River Bitcoin Fees (2026): True Cost of Recurring Buys",
     h1: "River Bitcoin fees in 2026 — the true cost",
     intro:
-      "River offers free recurring buys from the second order onward, full-reserve cold storage, and one free on-chain withdrawal per month. The first order pays the standard fee (~1%). Spread size isn't publicly fixed, so our 0% spread is labeled an estimate.",
+      "River offers free recurring buys from the second order onward, full-reserve cold storage, and one free on-chain withdrawal per month. The first order pays the standard fee (~1%). River says buy prices include a spread that typically runs around 0.25%, so we model 0.25% on every buy (labeled an estimate).",
     gotchas: [
       "The first recurring order pays the standard fee (~1% modeled).",
-      "Spread on priced orders is not publicly fixed — our 0% is an ESTIMATE until measured.",
+      "Every buy, including fee-free recurring ones, includes a spread River says typically falls around 0.25% (varies with market conditions) — modeled as an ESTIMATE.",
       "Only one free on-chain withdrawal per month; extra sends pay network fee by speed.",
     ],
     cheaperPath:
@@ -121,7 +121,7 @@ export const costPages: CostPage[] = [
     faqs: [
       {
         q: "Are River recurring buys free?",
-        a: "River states recurring buys are free from the second weekly order onward. The first order pays the standard fee.",
+        a: "River states recurring buys have no fee from the second weekly order onward; the first order pays the standard fee. A spread (typically ~0.25% on buys, per River) still applies to every order.",
       },
       {
         q: "Does River charge to withdraw Bitcoin?",

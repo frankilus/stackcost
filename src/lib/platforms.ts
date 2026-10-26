@@ -1,6 +1,6 @@
 /**
  * StackCost platform fee data — US-focused DCA comparison.
- * lastUpdated: 2026-10-21 (America/New_York). Original six re-verified 2026-10-21 (no changes); Robinhood and PayPal added.
+ * lastUpdated: 2026-10-26 (America/New_York). River spread corrected to documented ~0.25% typical (estimate); others re-verified 2026-10-26 (no changes).
  * All figures labeled from public fee pages; estimates marked clearly.
  */
 
@@ -31,7 +31,7 @@ export interface Platform {
   notes: string;
 }
 
-export const LAST_UPDATED = "2026-10-21";
+export const LAST_UPDATED = "2026-10-26";
 export const SCENARIO = {
   weeklyUsd: 100,
   weeks: 52,
@@ -72,7 +72,7 @@ export const platforms: Platform[] = [
     name: "River",
     website: "https://river.com",
     buyFeePct: 0,
-    spreadEstimatePct: 0,
+    spreadEstimatePct: 0.0025,
     spreadConfidence: "estimate",
     firstBuyPaysStandardFee: true,
     standardBuyFeePct: 0.01,
@@ -80,12 +80,17 @@ export const platforms: Platform[] = [
     withdrawalBtc: "1 free on-chain send/month; additional sends pay network fee by speed.",
     custodyNotes: "Full-reserve cold storage; monthly Proof of Reserves; no client BTC lending.",
     custodyMonthlyPct: 0,
-    pathModeled: "Weekly recurring buys — zero fee from 2nd order; assume free monthly withdraw.",
+    pathModeled: "Weekly recurring buys — zero fee from 2nd order; ~0.25% typical buy spread ESTIMATE on every buy; assume free monthly withdraw.",
     sources: [
       {
         label: "River fees help article",
         url: "https://support.river.com/hc/en-us/articles/50055900679315-What-are-River-s-fees",
-        accessed: "2026-10-15",
+        accessed: "2026-10-26",
+      },
+      {
+        label: "River: Does River charge a spread?",
+        url: "https://support.river.com/hc/en-us/articles/45688848337811-Does-River-charge-a-spread",
+        accessed: "2026-10-26",
       },
       {
         label: "River Proof of Reserves",
@@ -93,7 +98,7 @@ export const platforms: Platform[] = [
         accessed: "2026-10-15",
       },
     ],
-    notes: "River may include a spread on priced orders; size not publicly fixed — marked estimate 0% for free recurring path until measured.",
+    notes: "Recurring-buy fee waiver is separate from spread. River's help center states buy orders include a spread that 'typically falls around 0.25%' (sells ~0.50%), varying with market conditions and shown before you confirm. We model 0.25% as an ESTIMATE on every purchase, plus the 1.00% standard fee on the first weekly buy only. Instant cash (USD) withdrawals cost 1% ($1 min, $150 max); standard cash withdrawals are free.",
   },
   {
     id: "swan",

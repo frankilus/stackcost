@@ -63,6 +63,13 @@
       "type": "baseline",
       "summary": "Baseline added: Recurring Buy fee 2.00% for $75.00–$200.00 orders (2.20% under $75; 1.80% $200.01–$1,000; 1.50% above). Spread modeled at PayPal's own stated estimate of 1.00% (ESTIMATE). Venmo lists the identical crypto fee table but documents no general recurring BTC buy.",
       "source": "https://www.paypal.com/us/legalhub/paypal/cryptocurrencies-tnc"
+    },
+    {
+      "date": "2026-10-26",
+      "platformId": "river",
+      "type": "spread-change",
+      "summary": "Model correction: River's help center documents that buy orders include a spread that typically falls around 0.25% (sells ~0.50%), separate from the recurring-buy fee waiver. Changed spreadEstimatePct from 0% to 0.25% (estimate). Recurring path at $100/wk moves from ~$1.00/yr (first-buy fee only) to ~$14.00/yr (first-buy 1.00% + 0.25%×52). River's fee page (updated 2026-10-23) still shows 0% recurring fee from the 2nd weekly order and 1.00% standard fee.",
+      "source": "https://support.river.com/hc/en-us/articles/45688848337811-Does-River-charge-a-spread"
     }
   ]
 }
