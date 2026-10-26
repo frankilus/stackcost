@@ -5,6 +5,7 @@ import { NewsletterForm } from "@/components/NewsletterForm";
 import { COMPARE_WEEKLIES, computeCost, formatPct, formatUsd } from "@/lib/calc";
 import { SITE_URL } from "@/lib/compares";
 import { costPages, HUB_SLUG } from "@/lib/costPages";
+import { DCA_AMOUNTS, dcaSlug } from "@/lib/dcaAmounts";
 import { LAST_UPDATED, platforms } from "@/lib/platforms";
 
 const TITLE = "Cheapest Way to DCA Bitcoin in the US (2026): All-In Cost Ranking";
@@ -82,6 +83,15 @@ export default function Hub() {
         </table>
       </section>
       <p className="mt-3 text-xs text-zinc-500">52 weekly buys. Spreads marked estimate on Strike, Coinbase, Kraken, River, Robinhood, PayPal. Withdrawal/miner fees excluded — see <Link href="/costs/bitcoin-withdrawal-fees" className="text-amber-400 hover:underline">Bitcoin withdrawal fees</Link>. <Link href="/methodology" className="text-amber-400 hover:underline">Methodology</Link> · <Link href="/compare" className="text-amber-400 hover:underline">Head-to-head pages</Link> · <Link href="/fee-changes" className="text-amber-400 hover:underline">Fee change log</Link></p>
+
+      <section className="mt-10">
+        <h2 className="text-xl font-semibold text-zinc-50">Cheapest platform by weekly amount</h2>
+        <div className="mt-4 flex flex-wrap gap-3 text-sm">
+          {DCA_AMOUNTS.map((a) => (
+            <Link key={a} href={`/costs/dca/${dcaSlug(a)}`} className="rounded-lg border border-zinc-800 px-3 py-1.5 text-zinc-300 hover:border-amber-500/50 hover:text-amber-400">${a.toLocaleString("en-US")}/week</Link>
+          ))}
+        </div>
+      </section>
 
       <section className="mt-10">
         <h2 className="text-xl font-semibold text-zinc-50">FAQ</h2>
