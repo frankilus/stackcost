@@ -2,7 +2,7 @@ import Link from "next/link";
 import { AffiliateDisclosure } from "@/components/AffiliateDisclosure";
 import { LAST_UPDATED } from "@/lib/platforms";
 import { costPages } from "@/lib/costPages";
-import { DCA_AMOUNTS, dcaSlug } from "@/lib/dcaAmounts";
+import { DCA_AMOUNTS, DCA_MONTHLY_AMOUNTS, dcaSlug } from "@/lib/dcaAmounts";
 
 export function Footer() {
   return (
@@ -61,6 +61,11 @@ export function Footer() {
           {DCA_AMOUNTS.map((a) => (
             <Link key={a} href={`/costs/dca/${dcaSlug(a)}`} className="hover:text-amber-400">
               DCA ${a.toLocaleString("en-US")}/week
+            </Link>
+          ))}
+          {DCA_MONTHLY_AMOUNTS.map((a) => (
+            <Link key={`m${a}`} href={`/costs/dca/${dcaSlug(a, "month")}`} className="hover:text-amber-400">
+              DCA ${a.toLocaleString("en-US")}/month
             </Link>
           ))}
         </div>

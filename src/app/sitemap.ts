@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { getAllComparePairs, SITE_URL } from "@/lib/compares";
 import { costPages, HUB_SLUG } from "@/lib/costPages";
 import { LAST_UPDATED } from "@/lib/platforms";
-import { DCA_AMOUNTS, dcaSlug } from "@/lib/dcaAmounts";
+import { allDcaSlugs } from "@/lib/dcaAmounts";
 import { WITHDRAWALS_SLUG, WITHDRAWALS_VERIFIED } from "@/lib/withdrawals";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -58,8 +58,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
       priority: 0.85,
     })),
-    ...DCA_AMOUNTS.map((a) => ({
-      url: `${SITE_URL}/costs/dca/${dcaSlug(a)}`,
+    ...allDcaSlugs().map((slug) => ({
+      url: `${SITE_URL}/costs/dca/${slug}`,
       lastModified,
       changeFrequency: "weekly" as const,
       priority: 0.8,
