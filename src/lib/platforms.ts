@@ -1,6 +1,6 @@
 /**
  * StackCost platform fee data — US-focused DCA comparison.
- * lastUpdated: 2026-10-26 (America/New_York). River spread corrected to documented ~0.25% typical (estimate); others re-verified 2026-10-26 (no changes).
+ * lastUpdated: 2026-11-09 (America/New_York). Fold added 2026-11-09. Earlier: 2026-10-26. River spread corrected to documented ~0.25% typical (estimate); others re-verified 2026-10-26 (no changes).
  * All figures labeled from public fee pages; estimates marked clearly.
  */
 
@@ -31,7 +31,7 @@ export interface Platform {
   notes: string;
 }
 
-export const LAST_UPDATED = "2026-10-26";
+export const LAST_UPDATED = "2026-11-09";
 export const SCENARIO = {
   weeklyUsd: 100,
   weeks: 52,
@@ -283,5 +283,38 @@ export const platforms: Platform[] = [
       },
     ],
     notes: "PayPal's crypto terms say each Recurring Buy includes a transaction fee and an exchange rate including PayPal's spread, and that 'the exchange rate will include an estimated spread of one percent (1.00%)… the actual spread may be higher or lower based on market conditions.' We use that 1.00% as an ESTIMATE. The 2.00% fee is documented for $75–$200 orders. Venmo: crypto on Venmo is also run by PayPal Digital (dba Venmo Digital) and Venmo's fee page lists the identical 2.20% / 2.00% / 1.80% / 1.50% table, so we model this once. Venmo's help pages document no general recurring Bitcoin buy (only Cash Back to Crypto for Venmo Credit Card rewards), so Venmo is not ranked as a separate DCA path.",
+  },
+  {
+    id: "fold",
+    name: "Fold",
+    website: "https://foldapp.com",
+    buyFeePct: 0.01,
+    spreadEstimatePct: 0.005,
+    spreadConfidence: "estimate",
+    firstBuyPaysStandardFee: false,
+    standardBuyFeePct: 0.01,
+    fundingNotes: "Auto-Stack recurring buys (min $10) from a linked bank. Without a Reserve balance a 1% transaction fee applies to buys and sells, including automated buys. With a $5,000+ Reserve balance Fold's fee and added spread are 0%.",
+    withdrawalBtc: "Fold charges no BTC withdrawal fee; the third-party network fee applies without Reserve, and Fold pays it (up to in-app limits) with a $5,000+ Reserve balance.",
+    custodyNotes: "Bitcoin held with BitGo Bank & Trust, N.A. (federally chartered trust bank); no custody fee.",
+    custodyMonthlyPct: 0,
+    pathModeled: "Free Fold plan, no Reserve balance: 1% fee on every recurring buy + ~0.5% combined Fold/BitGo spread ESTIMATE. A $5,000+ Reserve balance drops Fold's fee and added spread to 0% (BitGo market spread remains) — not modeled because it requires parking $5,000 with Fold.",
+    sources: [
+      {
+        label: "Fold: Getting back to what we do best (Reserve, 2026-10-20)",
+        url: "https://blog.foldapp.com/getting-back-to-what-we-do-best",
+        accessed: "2026-11-09",
+      },
+      {
+        label: "Fold: No Transaction Fees. No Added Spread. Just Bitcoin. (2026-11-05)",
+        url: "https://foldapp.com/blog/no-transaction-fees-no-added-spread-just-bitcoin",
+        accessed: "2026-11-09",
+      },
+      {
+        label: "Fold Terms and Conditions (Auto-Stack)",
+        url: "https://foldapp.com/legal/terms-of-service/v2.pdf",
+        accessed: "2026-11-09",
+      },
+    ],
+    notes: "Fold's own disclosures: without a Reserve balance of $5,000 or more, a 1% transaction fee applies to bitcoin buys and sells including automated buys, and the price includes a Fold spread plus a spread charged by execution partner BitGo (both 'may vary', amounts not published). We model 1% documented + 0.5% spread ESTIMATE (same placeholder as Kraken/Coinbase). With a $5,000+ Reserve balance Fold charges 0% fee and adds no spread of its own, but BitGo's market spread is still in the price, so 'zero' is not literally zero all-in. Reserve is closed-loop stored value, not FDIC insured, earns no interest, and does not count as cash savings. Fold dropped its $100/yr Fold+ membership on 2026-10-20 for one free plan.",
   },
 ];

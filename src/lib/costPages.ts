@@ -260,6 +260,41 @@ export const costPages: CostPage[] = [
       },
     ],
   },
+  {
+    slug: "fold-bitcoin-fees",
+    platformId: "fold",
+    title: "Fold Bitcoin Fees (2026): Free Plan vs Reserve True Cost",
+    h1: "Fold bitcoin fees in 2026 — the true cost",
+    intro:
+      "On 2026-10-20 Fold replaced its $100/yr membership with one free plan. Per Fold's own disclosures, without a Reserve balance a 1% transaction fee applies to bitcoin buys and sells, including automated buys, and the price also includes spreads that Fold does not quantify. With a Reserve balance of $5,000 or more, Fold's fee and added spread drop to zero. StackCost models the free plan without Reserve.",
+    gotchas: [
+      "Free plan, no Reserve: 1% fee on every buy, including Auto-Stack recurring buys. There is no recurring-buy waiver like Strike or River have.",
+      "The price you see also includes a Fold spread plus BitGo's execution spread; neither amount is published (we model 0.5% as an ESTIMATE).",
+      "With a $5,000+ Reserve balance Fold charges 0% fee and adds no spread of its own, but BitGo's market spread is still in the price, so all-in is not literally zero.",
+      "Reserve is closed-loop stored value, not FDIC insured, and earns no interest. Parking $5,000 there has an opportunity cost versus a savings account.",
+      "Fold charges no bitcoin withdrawal fee; the network fee is paid by you without Reserve, and by Fold (up to in-app limits) with Reserve.",
+    ],
+    cheaperPath:
+      "If you will not hold $5,000 in Reserve, free-recurring platforms (Cash App Auto Invest, Strike, River) cost far less for DCA. If you already keep $5,000+ on Fold for bills or card spend, Reserve can make Fold competitive; verify the live quote before you confirm.",
+    faqs: [
+      {
+        q: "Does Fold charge fees on bitcoin buys?",
+        a: "Per Fold's disclosures, without a Reserve balance of $5,000 or more a 1% transaction fee applies to bitcoin buys and sells, including automated buys. The fee is shown before you confirm.",
+      },
+      {
+        q: "Is Fold's Reserve really zero fee?",
+        a: "With a $5,000+ Reserve balance Fold charges no trading fee and adds no spread of its own. BitGo's market spread is still included in the price, per Fold's disclosure.",
+      },
+      {
+        q: "Did Fold drop its subscription?",
+        a: "Yes. Fold's 2026-10-20 post says there is now one free Fold with no subscription and no fee. The former Fold+ membership no longer exists as a paid tier.",
+      },
+      {
+        q: "Does Fold charge to withdraw bitcoin?",
+        a: "Fold charges no withdrawal fee. Without Reserve you pay the network fee; with Reserve Fold pays it, up to limits shown in the app.",
+      },
+    ],
+  },
 ];
 
 export function getCostPage(slug: string) {

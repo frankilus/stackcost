@@ -33,8 +33,8 @@ export default function Hub() {
       a: "Buy fees, documented or estimated spread, and modeled custody fees over 52 weekly buys. Network miner fees for withdrawals are excluded because they vary.",
     },
     {
-      q: "Why are Coinbase, Kraken, Robinhood and PayPal more expensive?",
-      a: "Their default recurring-buy paths charge a percentage fee, an embedded spread, or both. Robinhood has no commission but discloses a ~0.95% market-maker payment inside the spread. PayPal charges 2.00% on a $100 buy plus an estimated 1.00% spread. Coinbase Advanced and Kraken Pro order books are cheaper but don't offer automatic DCA.",
+      q: "Why are Coinbase, Kraken, Robinhood, PayPal and Fold more expensive?",
+      a: "Their default recurring-buy paths charge a percentage fee, an embedded spread, or both. Robinhood has no commission but discloses a ~0.95% market-maker payment inside the spread. PayPal charges 2.00% on a $100 buy plus an estimated 1.00% spread. Fold charges 1% on every buy without a $5,000 Reserve balance. Coinbase Advanced and Kraken Pro order books are cheaper but don't offer automatic DCA.",
     },
   ];
   const jsonLd = [
@@ -82,7 +82,7 @@ export default function Hub() {
           </tbody>
         </table>
       </section>
-      <p className="mt-3 text-xs text-zinc-500">52 weekly buys. Spreads marked estimate on Strike, Coinbase, Kraken, River, Robinhood, PayPal. Withdrawal/miner fees excluded — see <Link href="/costs/bitcoin-withdrawal-fees" className="text-amber-400 hover:underline">Bitcoin withdrawal fees</Link>. <Link href="/methodology" className="text-amber-400 hover:underline">Methodology</Link> · <Link href="/compare" className="text-amber-400 hover:underline">Head-to-head pages</Link> · <Link href="/fee-changes" className="text-amber-400 hover:underline">Fee change log</Link></p>
+      <p className="mt-3 text-xs text-zinc-500">52 weekly buys. Spreads marked estimate on Strike, Coinbase, Kraken, River, Robinhood, PayPal, Fold. Withdrawal/miner fees excluded — see <Link href="/costs/bitcoin-withdrawal-fees" className="text-amber-400 hover:underline">Bitcoin withdrawal fees</Link>. <Link href="/methodology" className="text-amber-400 hover:underline">Methodology</Link> · <Link href="/compare" className="text-amber-400 hover:underline">Head-to-head pages</Link> · <Link href="/fee-changes" className="text-amber-400 hover:underline">Fee change log</Link></p>
 
       <section className="mt-10">
         <h2 className="text-xl font-semibold text-zinc-50">Cheapest platform by weekly amount</h2>

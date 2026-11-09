@@ -19,6 +19,10 @@ export const EXTRA_PAIRS: [string, string][] = [
   ["paypal", "cashapp"],
   ["paypal", "coinbase"],
   ["paypal", "robinhood"],
+  ["fold", "strike"],
+  ["fold", "river"],
+  ["fold", "cashapp"],
+  ["fold", "coinbase"],
 ];
 
 /** Core pairs (slug = `{earlierId}-vs-{laterId}` in platforms order) plus EXTRA_PAIRS. */

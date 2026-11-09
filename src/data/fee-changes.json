@@ -70,6 +70,13 @@
       "type": "spread-change",
       "summary": "Model correction: River's help center documents that buy orders include a spread that typically falls around 0.25% (sells ~0.50%), separate from the recurring-buy fee waiver. Changed spreadEstimatePct from 0% to 0.25% (estimate). Recurring path at $100/wk moves from ~$1.00/yr (first-buy fee only) to ~$14.00/yr (first-buy 1.00% + 0.25%×52). River's fee page (updated 2026-10-23) still shows 0% recurring fee from the 2nd weekly order and 1.00% standard fee.",
       "source": "https://support.river.com/hc/en-us/articles/45688848337811-Does-River-charge-a-spread"
+    },
+    {
+      "date": "2026-11-09",
+      "platformId": "fold",
+      "type": "baseline",
+      "summary": "Baseline added: Fold now has one free plan (membership dropped 2026-10-20). Without a $5,000+ Reserve balance a 1% fee applies to buys and sells including automated buys, plus undisclosed Fold/BitGo spreads (modeled 0.5% ESTIMATE). With $5,000+ Reserve, Fold fee and added spread are 0% (BitGo market spread remains); Fold charges no withdrawal fee.",
+      "source": "https://blog.foldapp.com/getting-back-to-what-we-do-best"
     }
   ]
 }

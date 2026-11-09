@@ -84,7 +84,7 @@ allInPct     = allInCostUsd / invested`}
         <h2 className="text-lg font-medium text-zinc-100">Head-to-head pages</h2>
         <p>
           Every unique pair among the original six platforms gets a compare URL (15 pages),
-          plus selected Robinhood and PayPal matchups ({getAllComparePairs().length} total). The
+          plus selected Robinhood, PayPal and Fold matchups ({getAllComparePairs().length} total). The
           “winner” is whoever has the lower modeled all-in cost at that weekly amount —
           never by affiliate status. See{" "}
           <Link href="/compare" className="text-amber-400 hover:underline">

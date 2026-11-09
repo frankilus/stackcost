@@ -3,7 +3,7 @@
  * Verified 2026-10-21 (America/New_York) from each platform's public pages.
  * "documented" = stated on the platform's own page. "estimate"/"varies" = not a fixed published number.
  */
-export const WITHDRAWALS_VERIFIED = "2026-10-21";
+export const WITHDRAWALS_VERIFIED = "2026-11-09";
 export const WITHDRAWALS_SLUG = "bitcoin-withdrawal-fees";
 
 export interface WithdrawalPolicy {
@@ -138,6 +138,21 @@ export const withdrawals: WithdrawalPolicy[] = [
     sources: [
       { label: "PayPal consumer fees", url: "https://www.paypal.com/us/digital-wallet/paypal-consumer-fees" },
       { label: "Venmo fees", url: "https://venmo.com/resources/our-fees/" },
+    ],
+  },
+  {
+    platformId: "fold",
+    headline: "No Fold fee; network fee varies (Fold pays it with Reserve)",
+    freeOnchainPath: "limited",
+    freePathDetail: "Fold charges no bitcoin withdrawal fee. With a $5,000+ Reserve balance Fold also pays the network fee on on-chain withdrawals, up to limits shown in the app.",
+    paidPathDetail: "Without a Reserve balance, the third-party network fee applies (charged by the network, not Fold).",
+    lightning: "Not covered on the cited Fold pages.",
+    minimum: "Not stated on the cited pages.",
+    confidence: "documented",
+    tip: "The fee-free path depends on holding $5,000+ in Reserve; otherwise batch withdrawals to dilute the network fee.",
+    sources: [
+      { label: "Fold: Getting back to what we do best", url: "https://blog.foldapp.com/getting-back-to-what-we-do-best" },
+      { label: "Fold: No Transaction Fees. No Added Spread.", url: "https://foldapp.com/blog/no-transaction-fees-no-added-spread-just-bitcoin" },
     ],
   },
 ];
