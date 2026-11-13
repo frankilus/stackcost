@@ -5,7 +5,7 @@ import { feeChanges, platformName } from "@/lib/feeChanges";
 
 export const metadata: Metadata = {
   title: "Bitcoin DCA Fee Change Log — StackCost",
-  description: "Dated public log of fee, spread, and policy changes for Strike, River, Swan, Coinbase, Kraken, and Cash App bitcoin recurring buys.",
+  description: "Dated public log of fee, spread, and policy changes for Cash App, Strike, River, Robinhood, Swan, Kraken, Fold, Coinbase, and PayPal bitcoin recurring buys.",
   alternates: { canonical: "/fee-changes" },
 };
 
