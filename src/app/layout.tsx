@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  verification: { google: "9tORGYiEX2iqEdbe1s6BacBEZU9-t-XEKmHAOZlHkc0" },
   title: "StackCost — Cheapest Way to DCA Bitcoin in the US (2026 True-Cost Comparison)",
   description:
     "True all-in cost of recurring Bitcoin buys on Cash App, Strike, River, Robinhood, Swan, Kraken, Coinbase, PayPal and Fold. Fees, spreads and custody modeled for $100/week DCA — sources linked, estimates labeled.",
