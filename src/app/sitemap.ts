@@ -3,7 +3,7 @@ import { getAllComparePairs, SITE_URL } from "@/lib/compares";
 import { costPages, HUB_SLUG } from "@/lib/costPages";
 import { LAST_UPDATED } from "@/lib/platforms";
 import { allDcaSlugs } from "@/lib/dcaAmounts";
-import { WITHDRAWALS_SLUG, WITHDRAWALS_VERIFIED } from "@/lib/withdrawals";
+import { withdrawals, WITHDRAWALS_SLUG, WITHDRAWALS_VERIFIED } from "@/lib/withdrawals";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date(`${LAST_UPDATED}T12:00:00-04:00`);
@@ -42,7 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${SITE_URL}/costs/${WITHDRAWALS_SLUG}`,
-      lastModified: new Date(`${WITHDRAWALS_VERIFIED}T12:00:00-04:00`),
+      lastModified: new Date(`${WITHDRAWALS_VERIFIED}T12:00:00-05:00`),
       changeFrequency: "weekly",
       priority: 0.9,
     },
@@ -57,6 +57,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: "weekly" as const,
       priority: 0.85,
+    })),
+    ...withdrawals.map((w) => ({
+      url: `${SITE_URL}/costs/${w.slug}`,
+      lastModified: new Date(`${WITHDRAWALS_VERIFIED}T12:00:00-05:00`),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
     })),
     ...allDcaSlugs().map((slug) => ({
       url: `${SITE_URL}/costs/dca/${slug}`,

@@ -2,6 +2,8 @@ import Link from "next/link";
 import { AffiliateDisclosure } from "@/components/AffiliateDisclosure";
 import { LAST_UPDATED } from "@/lib/platforms";
 import { costPages } from "@/lib/costPages";
+import { platforms } from "@/lib/platforms";
+import { withdrawalsRanked } from "@/lib/withdrawals";
 import { DCA_AMOUNTS, DCA_MONTHLY_AMOUNTS, dcaSlug } from "@/lib/dcaAmounts";
 
 export function Footer() {
@@ -54,6 +56,13 @@ export function Footer() {
           {costPages.map((c) => (
             <Link key={c.slug} href={`/costs/${c.slug}`} className="hover:text-amber-400">
               {c.h1.split(" — ")[0]}
+            </Link>
+          ))}
+        </div>
+        <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-zinc-600">
+          {withdrawalsRanked.map((w) => (
+            <Link key={w.slug} href={`/costs/${w.slug}`} className="hover:text-amber-400">
+              {platforms.find((p) => p.id === w.platformId)?.name} withdrawal fee
             </Link>
           ))}
         </div>

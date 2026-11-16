@@ -1,13 +1,19 @@
 /**
  * Bitcoin withdrawal (send-to-self-custody) fees by platform.
- * Verified 2026-10-21 (America/New_York) from each platform's public pages.
+ * Re-verified 2026-11-16 (America/New_York) from each platform's public pages.
  * "documented" = stated on the platform's own page. "estimate"/"varies" = not a fixed published number.
  */
-export const WITHDRAWALS_VERIFIED = "2026-11-09";
+export const WITHDRAWALS_VERIFIED = "2026-11-16";
 export const WITHDRAWALS_SLUG = "bitcoin-withdrawal-fees";
 
 export interface WithdrawalPolicy {
   platformId: string;
+  /** Longtail slug: /costs/{slug} */
+  slug: string;
+  /** 1 = cheapest documented path to self-custody. Ties broken by doc order. */
+  rank: number;
+  /** One-line answer to "how much does X charge to withdraw bitcoin?" */
+  answer: string;
   /** Short headline for the table. */
   headline: string;
   /** Is there a documented zero-fee way to withdraw on-chain? */
@@ -24,6 +30,9 @@ export interface WithdrawalPolicy {
 export const withdrawals: WithdrawalPolicy[] = [
   {
     platformId: "swan",
+    slug: "swan-bitcoin-withdrawal-fee",
+    rank: 1,
+    answer: "Nothing. Swan states BTC withdrawals are complimentary and its custody partner pays the miner fee, including on auto-withdrawals.",
     headline: "Free — Swan covers miner fees",
     freeOnchainPath: "yes",
     freePathDetail: "All BTC and USD withdrawals are complimentary; Swan's custody partner pays the miner fee. Auto-withdrawal is also free.",
@@ -39,22 +48,27 @@ export const withdrawals: WithdrawalPolicy[] = [
   },
   {
     platformId: "strike",
+    slug: "strike-bitcoin-withdrawal-fee",
+    rank: 2,
+    answer: "Zero on-chain fee at Flexible speed (~24 hours) and on auto-withdrawals; Priority (~10 min) and Standard (~1 hour) carry an on-chain fee shown before you confirm.",
     headline: "Free on 'Flexible' (~24h) speed",
     freeOnchainPath: "yes",
     freePathDetail: "On-chain sends at Flexible speed (~24 hours) carry no on-chain fee — Strike covers it. Auto-withdrawals use the Flexible tier and are free.",
     paidPathDetail: "Priority (~10 min) and Standard (~1 hour) charge an on-chain fee shown before you confirm.",
     lightning: "Supported; Strike passes through a small routing fee with no extra charge.",
-    minimum: "Auto-withdrawal threshold: 1,000,000 sats (₿0.01) minimum.",
+    minimum: "Auto-withdrawal threshold 1,000,000 sats (₿0.01) to 500,000,000 sats (₿5). No manual on-chain minimum stated.",
     confidence: "documented",
     tip: "Pick Flexible speed or set an auto-withdrawal threshold. Send from your bitcoin balance, not your cash balance — sending from cash applies a 1% conversion spread.",
     sources: [
-      { label: "Strike: fees and rates for bitcoin transactions", url: "https://strike.me/faq/what-fees-and-rates-apply-to-bitcoin-transactions/" },
-      { label: "Strike: how do I send cash or bitcoin?", url: "https://strike.me/support/how-do-i-send-cash-or-bitcoin/" },
-      { label: "Strike: bitcoin auto-withdrawals", url: "https://strike.me/faq/what-are-bitcoin-auto-withdrawals/" },
+            { label: "Strike: how do I send cash or bitcoin?", url: "https://strike.me/support/how-do-i-send-cash-or-bitcoin/" },
+      { label: "Strike: how do I withdraw bitcoin? (auto-withdrawals)", url: "https://strike.me/support/how-do-i-withdraw-bitcoin/" },
     ],
   },
   {
     platformId: "cashapp",
+    slug: "cash-app-bitcoin-withdrawal-fee",
+    rank: 3,
+    answer: "Free at standard speed (24 hours or less) with a 100,000-sat (₿0.001) minimum. Cash App also charges no Lightning fees.",
     headline: "Free at standard speed",
     freeOnchainPath: "yes",
     freePathDetail: "No fee to withdraw bitcoin at standard speed; completes in 24 hours or less.",
@@ -69,12 +83,15 @@ export const withdrawals: WithdrawalPolicy[] = [
   },
   {
     platformId: "river",
+    slug: "river-bitcoin-withdrawal-fee",
+    rank: 4,
+    answer: "One free standard on-chain send per month; additional sends pay River's network-fee estimate for the speed you choose (Standard or Priority).",
     headline: "1 free send per month",
     freeOnchainPath: "limited",
-    freePathDetail: "Each client gets one free on-chain send per month (available on the 1st; may take up to 24 hours).",
-    paidPathDetail: "Additional sends pay a network fee by speed (Standard or Priority).",
+    freePathDetail: "Each client gets one free standard on-chain send per month, available on the 1st. Standard sends are batched and estimated to complete in about 4 hours.",
+    paidPathDetail: "Additional sends pay River's estimate of the network fee for the speed you pick: Standard (batched, ~4h) or Priority (~1h, costs more).",
     lightning: "Not covered on the cited River pages; check in-app.",
-    minimum: "No send limit stated; only settled bitcoin past the holding period can be sent.",
+    minimum: "No send limit stated; only bitcoin past the holding period can be sent (ForceField accounts have a weekly cap).",
     confidence: "documented",
     tip: "DCA weekly, withdraw monthly using the free send.",
     sources: [
@@ -84,12 +101,15 @@ export const withdrawals: WithdrawalPolicy[] = [
   },
   {
     platformId: "kraken",
+    slug: "kraken-bitcoin-withdrawal-fee",
+    rank: 6,
+    answer: "A flat ₿0.000015 (1,500 sats) per on-chain BTC withdrawal, with a ₿0.000218 minimum, per Kraken's published table. Lightning: 0 + 0.1%.",
     headline: "Flat fee ₿0.000015 on-chain",
     freeOnchainPath: "no",
     freePathDetail: "No free on-chain path documented.",
     paidPathDetail: "Published BTC on-chain withdrawal fee ₿0.00001500 (1,500 sats), minimum ₿0.000218. Kraken says fees can change; the fee at confirmation is final.",
-    lightning: "Lightning withdrawals supported (fee shown at confirm).",
-    minimum: "₿0.000218 on-chain (per Kraken's table on 2026-10-21).",
+    lightning: "Supported. Kraken's table lists Bitcoin (Lightning) at 0 + 0.1% with a ₿0.00001 minimum.",
+    minimum: "₿0.000218 on-chain (including fee) per Kraken's table, checked 2026-11-16.",
     confidence: "documented",
     tip: "Fewer, larger withdrawals keep the flat fee small as a % of what you move. ACH/Plaid purchases trigger a temporary withdrawal hold.",
     sources: [
@@ -99,6 +119,9 @@ export const withdrawals: WithdrawalPolicy[] = [
   },
   {
     platformId: "coinbase",
+    slug: "coinbase-bitcoin-withdrawal-fee",
+    rank: 9,
+    answer: "Coinbase charges its estimate of the prevailing network fee for a standalone send (varies, shown at send). Lightning sends cost 0.2% of the amount.",
     headline: "Network-fee estimate (varies)",
     freeOnchainPath: "no",
     freePathDetail: "No free on-chain path documented.",
@@ -113,6 +136,9 @@ export const withdrawals: WithdrawalPolicy[] = [
   },
   {
     platformId: "robinhood",
+    slug: "robinhood-bitcoin-withdrawal-fee",
+    rank: 7,
+    answer: "Robinhood charges $0 itself, but every transfer pays a Bitcoin network fee that varies with network activity. No fixed number is published.",
     headline: "$0 Robinhood fee + network fee",
     freeOnchainPath: "no",
     freePathDetail: "No free on-chain path documented. Robinhood itself charges nothing for transfers.",
@@ -127,6 +153,9 @@ export const withdrawals: WithdrawalPolicy[] = [
   },
   {
     platformId: "paypal",
+    slug: "paypal-bitcoin-withdrawal-fee",
+    rank: 8,
+    answer: "No PayPal fee, but sending to an outside address pays a variable crypto network fee shown right before you transfer. No fixed number is published.",
     headline: "Network fee (varies); no PayPal fee",
     freeOnchainPath: "no",
     freePathDetail: "No free external path documented. Transfers to other PayPal or Venmo crypto accounts are free.",
@@ -142,6 +171,9 @@ export const withdrawals: WithdrawalPolicy[] = [
   },
   {
     platformId: "fold",
+    slug: "fold-bitcoin-withdrawal-fee",
+    rank: 5,
+    answer: "Fold charges no withdrawal fee of its own. Without a $5,000+ Reserve balance you pay the third-party network fee; with Reserve, Fold pays it up to in-app limits.",
     headline: "No Fold fee; network fee varies (Fold pays it with Reserve)",
     freeOnchainPath: "limited",
     freePathDetail: "Fold charges no bitcoin withdrawal fee. With a $5,000+ Reserve balance Fold also pays the network fee on on-chain withdrawals, up to limits shown in the app.",
@@ -156,3 +188,11 @@ export const withdrawals: WithdrawalPolicy[] = [
     ],
   },
 ];
+
+export const withdrawalsRanked = [...withdrawals].sort((a, b) => a.rank - b.rank);
+export function getWithdrawalBySlug(slug: string) {
+  return withdrawals.find((w) => w.slug === slug);
+}
+export function getWithdrawalByPlatform(platformId: string) {
+  return withdrawals.find((w) => w.platformId === platformId);
+}

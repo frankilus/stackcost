@@ -7,11 +7,13 @@ import { COMPARE_WEEKLIES, computeCost, formatPct, formatUsd } from "@/lib/calc"
 import { getPairsForPlatform, SITE_URL } from "@/lib/compares";
 import { costPages, getCostPage, HUB_SLUG } from "@/lib/costPages";
 import { LAST_UPDATED, platforms } from "@/lib/platforms";
+import { getWithdrawalByPlatform, getWithdrawalBySlug, withdrawals } from "@/lib/withdrawals";
+import { WithdrawalPlatformPage, withdrawalPageMeta } from "@/components/WithdrawalPlatformPage";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return costPages.map((c) => ({ slug: c.slug }));
+  return [...costPages.map((c) => ({ slug: c.slug })), ...withdrawals.map((w) => ({ slug: w.slug }))];
 }
 
 export async function generateMetadata({
@@ -20,6 +22,16 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
+  const wd = getWithdrawalBySlug(slug);
+  if (wd) {
+    const m = withdrawalPageMeta(wd);
+    return {
+      title: `${m.title} | StackCost`,
+      description: m.description,
+      alternates: { canonical: m.url },
+      openGraph: { title: m.title, description: m.description, url: m.url, type: "article" },
+    };
+  }
   const page = getCostPage(slug);
   if (!page) return { title: "Costs — StackCost" };
   const description = `${page.intro.slice(0, 150)}… Last verified ${LAST_UPDATED}.`;
@@ -33,6 +45,8 @@ export async function generateMetadata({
 
 export default async function CostPageView({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+  const wd = getWithdrawalBySlug(slug);
+  if (wd) return <WithdrawalPlatformPage w={wd} />;
   const page = getCostPage(slug);
   if (!page) notFound();
   const p = platforms.find((x) => x.id === page.platformId);
@@ -135,7 +149,7 @@ export default async function CostPageView({ params }: { params: Promise<{ slug:
           <p className="mt-3 text-sm leading-relaxed text-zinc-300">{page.cheaperPath}</p>
           <ul className="mt-4 space-y-1 text-sm text-zinc-400">
             <li><strong className="text-zinc-300">Funding:</strong> {p.fundingNotes}</li>
-            <li><strong className="text-zinc-300">Withdrawals:</strong> {p.withdrawalBtc} <Link href={`/costs/bitcoin-withdrawal-fees#${p.id}`} className="text-amber-400 hover:underline">Compare withdrawal fees →</Link></li>
+            <li><strong className="text-zinc-300">Withdrawals:</strong> {p.withdrawalBtc} {getWithdrawalByPlatform(p.id) ? <Link href={`/costs/${getWithdrawalByPlatform(p.id)!.slug}`} className="text-amber-400 hover:underline">{p.name} withdrawal fee →</Link> : null} <Link href="/costs/bitcoin-withdrawal-fees" className="text-amber-400 hover:underline">Compare all →</Link></li>
             <li><strong className="text-zinc-300">Custody:</strong> {p.custodyNotes}</li>
           </ul>
         </div>

@@ -5,7 +5,7 @@ import { NewsletterForm } from "@/components/NewsletterForm";
 import { SITE_URL } from "@/lib/compares";
 import { costPages, HUB_SLUG } from "@/lib/costPages";
 import { platforms } from "@/lib/platforms";
-import { withdrawals, WITHDRAWALS_SLUG, WITHDRAWALS_VERIFIED } from "@/lib/withdrawals";
+import { withdrawals, withdrawalsRanked, WITHDRAWALS_SLUG, WITHDRAWALS_VERIFIED } from "@/lib/withdrawals";
 
 const TITLE = "Bitcoin Withdrawal Fees by Platform (2026): Swan, Strike, Cash App, River, Kraken, Coinbase, Robinhood, PayPal, Fold";
 const DESC = `What it costs to move bitcoin to your own wallet from ${withdrawals.length} US apps — free paths, flat fees, Lightning, minimums. Sourced from each platform's own pages. Verified ${WITHDRAWALS_VERIFIED}.`;
@@ -18,23 +18,21 @@ export const metadata: Metadata = {
   openGraph: { title: TITLE, description: DESC, url: URL, type: "article" },
 };
 
-const ORDER = { yes: 0, limited: 1, no: 2 } as const;
 const BADGE = { yes: "Free path", limited: "Limited free", no: "Paid" } as const;
 
 export default function WithdrawalFees() {
-  const rows = [...withdrawals]
-    .sort((a, b) => ORDER[a.freeOnchainPath] - ORDER[b.freeOnchainPath])
+  const rows = withdrawalsRanked
     .map((w) => ({ w, p: platforms.find((p) => p.id === w.platformId)!, page: costPages.find((c) => c.platformId === w.platformId) }));
   const freeNames = rows.filter((r) => r.w.freeOnchainPath === "yes").map((r) => r.p.name);
 
   const faqs = [
     {
       q: "Which Bitcoin apps let you withdraw for free?",
-      a: `Per their own fee pages (checked ${WITHDRAWALS_VERIFIED}): ${freeNames.join(", ")} each document a zero-fee on-chain withdrawal path (Strike at its Flexible ~24h speed, Cash App at standard speed). River gives one free on-chain send per month. Kraken and Coinbase charge on every on-chain withdrawal. Robinhood, PayPal and Fold add no fee of their own but pass through a variable network fee (Fold pays it only with a $5,000+ Reserve balance).`,
+      a: `Per their own fee pages (checked ${WITHDRAWALS_VERIFIED}): ${freeNames.join(", ")} each document a zero-fee on-chain withdrawal path (Strike at its Flexible ~24h speed, Cash App at standard speed). River gives one free standard on-chain send per month. Kraken and Coinbase charge on every on-chain withdrawal. Robinhood, PayPal and Fold add no fee of their own but pass through a variable network fee (Fold pays it only with a $5,000+ Reserve balance).`,
     },
     {
       q: "How much does Kraken charge to withdraw Bitcoin?",
-      a: "Kraken's published BTC on-chain withdrawal fee was ₿0.000015 (1,500 sats) with a ₿0.000218 minimum when we checked. Kraken notes fees can change and the amount at confirmation is final.",
+      a: "Kraken's published BTC on-chain withdrawal fee was ₿0.000015 (1,500 sats) with a ₿0.000218 minimum when we checked; Lightning withdrawals are listed at 0 + 0.1%. Kraken notes fees can change and the amount at confirmation is final.",
     },
     {
       q: "How much does Coinbase charge to withdraw Bitcoin?",
@@ -47,6 +45,7 @@ export default function WithdrawalFees() {
   ];
   const jsonLd = [
     { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) },
+    { "@context": "https://schema.org", "@type": "ItemList", name: "Bitcoin withdrawal fees by platform, cheapest first", itemListOrder: "https://schema.org/ItemListOrderAscending", numberOfItems: rows.length, itemListElement: rows.map(({ w, p }, i) => ({ "@type": "ListItem", position: i + 1, name: `${p.name} bitcoin withdrawal fee`, url: `${SITE_URL}/costs/${w.slug}` })) },
     { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
       { "@type": "ListItem", position: 1, name: "StackCost", item: SITE_URL },
       { "@type": "ListItem", position: 2, name: "Costs", item: `${SITE_URL}/costs/${HUB_SLUG}` },
@@ -77,6 +76,7 @@ export default function WithdrawalFees() {
         <table className="w-full min-w-[820px] text-left text-sm">
           <thead>
             <tr className="border-b border-zinc-800 bg-zinc-900/80 text-xs uppercase tracking-wide text-zinc-400">
+              <th className="px-4 py-3">#</th>
               <th className="px-4 py-3">Platform</th>
               <th className="px-4 py-3">On-chain withdrawal</th>
               <th className="px-4 py-3">Free path</th>
@@ -85,9 +85,10 @@ export default function WithdrawalFees() {
             </tr>
           </thead>
           <tbody>
-            {rows.map(({ w, p }) => (
+            {rows.map(({ w, p }, i) => (
               <tr key={w.platformId} className="border-b border-zinc-800/80 align-top last:border-0 text-zinc-200">
-                <td className="px-4 py-3 font-medium">{p.name}
+                <td className="px-4 py-3 tabular-nums text-zinc-500">{i + 1}</td>
+                <td className="px-4 py-3 font-medium"><Link href={`/costs/${w.slug}`} className="text-zinc-100 hover:text-amber-400 hover:underline">{p.name}</Link>
                   <div className={`mt-1 inline-block rounded px-1.5 py-0.5 text-[11px] font-normal ${w.freeOnchainPath === "yes" ? "bg-emerald-500/15 text-emerald-300" : w.freeOnchainPath === "limited" ? "bg-amber-500/15 text-amber-300" : "bg-zinc-700/40 text-zinc-300"}`}>{BADGE[w.freeOnchainPath]}</div>
                 </td>
                 <td className="px-4 py-3">{w.headline}{w.confidence === "varies" ? <div className="text-xs text-zinc-500">Varies; not a fixed published number</div> : null}</td>
@@ -108,7 +109,7 @@ export default function WithdrawalFees() {
         <h2 className="text-xl font-semibold text-zinc-50">Platform details and how to pay less</h2>
         {rows.map(({ w, p, page }) => (
           <div key={w.platformId} id={w.platformId} className="rounded-xl border border-zinc-800 bg-zinc-900/30 p-5">
-            <h3 className="text-lg font-semibold text-zinc-100">{p.name} bitcoin withdrawal fee</h3>
+            <h3 className="text-lg font-semibold text-zinc-100"><Link href={`/costs/${w.slug}`} className="hover:text-amber-400 hover:underline">{p.name} bitcoin withdrawal fee</Link></h3>
             <ul className="mt-3 space-y-1.5 text-sm text-zinc-300">
               <li><strong className="text-zinc-200">Free path:</strong> {w.freePathDetail}</li>
               <li><strong className="text-zinc-200">Paid path:</strong> {w.paidPathDetail}</li>
@@ -118,6 +119,7 @@ export default function WithdrawalFees() {
             </ul>
             <p className="mt-3 text-xs text-zinc-500">
               Sources: {w.sources.map((s, i) => (<span key={s.url}>{i > 0 ? " · " : ""}<a href={s.url} rel="nofollow noopener" target="_blank" className="text-amber-400/90 hover:underline">{s.label}</a></span>))}
+              {" · "}<Link href={`/costs/${w.slug}`} className="text-amber-400 hover:underline">{p.name} withdrawal fee page →</Link>
               {page ? <> · <Link href={`/costs/${page.slug}`} className="text-amber-400 hover:underline">{p.name} buy-side true cost →</Link></> : null}
             </p>
           </div>
