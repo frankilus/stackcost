@@ -116,10 +116,20 @@ allInPct     = allInCostUsd / invested`}
           <li>
             Strike recurring waives the <strong className="text-zinc-200">trading fee</strong>{" "}
             after the first weekly buy, but Strike&apos;s fee FAQ targets an all-in{" "}
-            <strong className="text-zinc-200">spread of ~0.22%</strong> on every fill — we
+            <strong className="text-zinc-200">spread of ~0.21%</strong> on every fill — we
             model that as an ESTIMATE (actual may vary).
           </li>
         </ul>
+
+        <h2 className="text-lg font-medium text-zinc-100">One-time buys</h2>
+        <p>
+          Our <Link href="/costs/buy" className="text-amber-400 hover:underline">one-time buy pages</Link> price a single purchase as
+          fee + spread with no recurring waivers: Strike&apos;s volume tier (0.89% below $5,000 of monthly volume, 0.79% from $5,000,
+          counting the trade itself, assuming no other Strike trades), River&apos;s 1.00% one-time fee, Swan&apos;s 1%, Kraken Instant Buy 1%,
+          Cash App Market Buy (2.0% / 1.5% / 0.9% / 0% by size, with the midpoint of its 0–0.75% spread range below $2,000),
+          PayPal&apos;s size tiers, Fold&apos;s 1% without Reserve, Robinhood&apos;s spread-only routing, and an estimated Coinbase Simple Buy fee.
+          Spreads reuse the estimates above.
+        </p>
 
         <h2 className="text-lg font-medium text-zinc-100">Confidence labels</h2>
         <p>

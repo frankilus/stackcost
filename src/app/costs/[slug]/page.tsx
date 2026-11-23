@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BUY_AMOUNTS, buyPath, computeOneTime } from "@/lib/oneTimeBuys";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { AffiliateDisclosure } from "@/components/AffiliateDisclosure";
@@ -184,6 +185,15 @@ export default async function CostPageView({ params }: { params: Promise<{ slug:
         <h2 className="text-lg font-semibold text-zinc-50">How {p.name} compares</h2>
         <p className="mt-2 text-sm text-zinc-400">
           See the full ranking: <Link href={`/costs/${HUB_SLUG}`} className="text-amber-400 hover:underline">Cheapest Bitcoin DCA in the US (2026)</Link>
+        </p>
+        <p className="mt-2 text-sm text-zinc-400">
+          One-time buy on {p.name} (fee + spread):{" "}
+          {BUY_AMOUNTS.map((a, i) => (
+            <span key={a}>
+              {i > 0 ? " · " : ""}
+              <Link href={buyPath(a)} className="text-amber-400 hover:underline">${a.toLocaleString("en-US")}</Link> {formatUsd(computeOneTime(p, a).totalUsd)}
+            </span>
+          ))}
         </p>
         <ul className="mt-4 flex flex-wrap gap-2">
           {costPages.filter((c) => c.slug !== page.slug).map((c) => {

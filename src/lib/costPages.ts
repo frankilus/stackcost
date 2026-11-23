@@ -80,15 +80,15 @@ export const costPages: CostPage[] = [
     title: "Strike Bitcoin Fees (2026): True Cost of Recurring Buys",
     h1: "Strike Bitcoin fees in 2026 — the true cost",
     intro:
-      "Strike waives the trading fee on recurring purchases for personal accounts after the first weekly buy (0.89% at low volume on that first buy). Separately, Strike's fee FAQ states it targets an all-in spread of ~0.22% on buys and sells — the fee waiver does not remove that spread. We model both.",
+      "Strike waives the trading fee on recurring purchases for personal accounts after the first weekly buy (0.89% at low volume on that first buy). Separately, Strike's fee FAQ states it targets an all-in spread of ~0.21% on buys and sells — the fee waiver does not remove that spread. We model both.",
     gotchas: [
       "Your first recurring purchase pays the standard tiered trading fee (0.89% at low volume).",
-      "The recurring trading-fee waiver does NOT remove spread — Strike targets ~0.22% all-in spread on every buy/sell (actual may vary; ESTIMATE).",
+      "The recurring trading-fee waiver does NOT remove spread — Strike targets ~0.21% all-in spread on every buy/sell (actual may vary; ESTIMATE).",
       "One-time buys are fully tiered and not fee-free — the waiver applies only to recurring purchases.",
       "On-chain withdrawals are free at Flexible speed (~24h) and via auto-withdrawal; Priority/Standard speeds pay an on-chain fee shown at send.",
     ],
     cheaperPath:
-      "Set up a weekly recurring purchase rather than manual one-time buys (to get the trading-fee waiver after week 1), and withdraw at the free Flexible speed (or set an auto-withdrawal) to avoid on-chain fees. Expect the ~0.22% target spread on each fill.",
+      "Set up a weekly recurring purchase rather than manual one-time buys (to get the trading-fee waiver after week 1), and withdraw at the free Flexible speed (or set an auto-withdrawal) to avoid on-chain fees. Expect the ~0.21% target spread on each fill.",
     faqs: [
       {
         q: "Does Strike charge fees on recurring Bitcoin buys?",
@@ -100,7 +100,7 @@ export const costPages: CostPage[] = [
       },
       {
         q: "Does Strike have a spread?",
-        a: "Yes. Strike's trading-fees FAQ (accessed 2026-10-15) states: 'Strike targets an all-in spread of 0.22%.' The actual spread may be higher or lower and is reflected in the quoted buy/sell price. The recurring trading-fee waiver does not eliminate this spread. We model 0.22% as an ESTIMATE on every purchase.",
+        a: "Yes. Strike's trading-fees FAQ (accessed 2026-11-23) states: 'Strike targets an all-in spread of 0.21%.' The actual spread may be higher or lower and is reflected in the quoted buy/sell price. The recurring trading-fee waiver does not eliminate this spread. We model 0.22% as an ESTIMATE on every purchase.",
       },
     ],
   },
@@ -205,7 +205,7 @@ export const costPages: CostPage[] = [
       "Robinhood charges $0 for crypto transfers, but the Bitcoin network fee still applies.",
     ],
     cheaperPath:
-      "For pure Bitcoin DCA, a platform with a free recurring path and a smaller disclosed spread (Strike's ~0.22% target, or Cash App Auto Invest at 0%) costs less than Robinhood's ~0.95%+ spread.",
+      "For pure Bitcoin DCA, a platform with a free recurring path and a smaller disclosed spread (Strike's ~0.21% target, or Cash App Auto Invest at 0%) costs less than Robinhood's ~0.95%+ spread.",
     faqs: [
       {
         q: "Does Robinhood charge fees on recurring Bitcoin buys?",

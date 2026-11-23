@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/Footer";
@@ -73,34 +74,37 @@ export default function RootLayout({
         />
         <header className="border-b border-zinc-800/80">
           <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
-            <a href="/" className="text-lg font-semibold tracking-tight text-zinc-50">
+            <Link href="/" className="text-lg font-semibold tracking-tight text-zinc-50">
               Stack<span className="text-amber-400">Cost</span>
-            </a>
+            </Link>
             <nav className="flex flex-wrap gap-x-5 gap-y-1 text-sm text-zinc-400">
-              <a href="/#compare" className="hover:text-zinc-100">
+              <Link href="/#compare" className="hover:text-zinc-100">
                 Table
-              </a>
-              <a href="/costs/cheapest-bitcoin-dca-us" className="hover:text-zinc-100">
+              </Link>
+              <Link href="/costs/cheapest-bitcoin-dca-us" className="hover:text-zinc-100">
                 Cheapest
-              </a>
-              <a href="/calculator" className="hover:text-zinc-100">
+              </Link>
+              <Link href="/calculator" className="hover:text-zinc-100">
                 Calculator
-              </a>
-              <a href="/costs/bitcoin-withdrawal-fees" className="hover:text-zinc-100">
+              </Link>
+              <Link href="/costs/buy" className="hover:text-zinc-100">
+                One-time
+              </Link>
+              <Link href="/costs/bitcoin-withdrawal-fees" className="hover:text-zinc-100">
                 Withdrawals
-              </a>
-              <a href="/compare" className="hover:text-zinc-100">
+              </Link>
+              <Link href="/compare" className="hover:text-zinc-100">
                 Compare
-              </a>
-              <a href="/fee-changes" className="hover:text-zinc-100">
+              </Link>
+              <Link href="/fee-changes" className="hover:text-zinc-100">
                 Fee changes
-              </a>
-              <a href="/methodology" className="hover:text-zinc-100">
+              </Link>
+              <Link href="/methodology" className="hover:text-zinc-100">
                 Methodology
-              </a>
-              <a href="/#alerts" className="hover:text-zinc-100">
+              </Link>
+              <Link href="/#alerts" className="hover:text-zinc-100">
                 Alerts
-              </a>
+              </Link>
             </nav>
           </div>
         </header>

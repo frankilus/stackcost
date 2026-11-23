@@ -5,6 +5,7 @@ import { costPages } from "@/lib/costPages";
 import { platforms } from "@/lib/platforms";
 import { withdrawalsRanked } from "@/lib/withdrawals";
 import { DCA_AMOUNTS, DCA_MONTHLY_AMOUNTS, dcaSlug } from "@/lib/dcaAmounts";
+import { BUY_AMOUNTS, BUY_HUB_PATH, buyPath } from "@/lib/oneTimeBuys";
 
 export function Footer() {
   return (
@@ -34,6 +35,10 @@ export function Footer() {
           <span aria-hidden>·</span>
           <Link href="/costs/bitcoin-withdrawal-fees" className="hover:text-amber-400">
             Withdrawal fees
+          </Link>
+          <span aria-hidden>·</span>
+          <Link href={BUY_HUB_PATH} className="hover:text-amber-400">
+            One-time buy costs
           </Link>
           <span aria-hidden>·</span>
           <Link href="/compare" className="hover:text-amber-400">
@@ -75,6 +80,13 @@ export function Footer() {
           {DCA_MONTHLY_AMOUNTS.map((a) => (
             <Link key={`m${a}`} href={`/costs/dca/${dcaSlug(a, "month")}`} className="hover:text-amber-400">
               DCA ${a.toLocaleString("en-US")}/month
+            </Link>
+          ))}
+        </div>
+        <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-zinc-600">
+          {BUY_AMOUNTS.map((a) => (
+            <Link key={`b${a}`} href={buyPath(a)} className="hover:text-amber-400">
+              Cost to buy ${a.toLocaleString("en-US")} of bitcoin
             </Link>
           ))}
         </div>

@@ -44,7 +44,7 @@ export const platforms: Platform[] = [
     name: "Strike",
     website: "https://strike.me",
     buyFeePct: 0,
-    spreadEstimatePct: 0.0022,
+    spreadEstimatePct: 0.0021,
     spreadConfidence: "estimate",
     firstBuyPaysStandardFee: true,
     standardBuyFeePct: 0.0089,
@@ -52,12 +52,12 @@ export const platforms: Platform[] = [
     withdrawalBtc: "On-chain free at Flexible speed (~24h) and via auto-withdrawal; Priority/Standard speeds pay an on-chain fee shown at send. Lightning: small pass-through routing fee.",
     custodyNotes: "Custodial balance; designed for frequent move-to-self-custody.",
     custodyMonthlyPct: 0,
-    pathModeled: "Weekly recurring buys (personal) — trading fee waived from 2nd purchase; ~0.22% target spread ESTIMATE on every buy.",
+    pathModeled: "Weekly recurring buys (personal) — trading fee waived from 2nd purchase; ~0.21% target spread ESTIMATE on every buy.",
     sources: [
       {
         label: "Strike trading fees FAQ",
         url: "https://strike.me/en/faq/what-are-the-bitcoin-trading-fees-on-strike/",
-        accessed: "2026-10-15",
+        accessed: "2026-11-23",
       },
       {
         label: "Strike recurring purchase FAQ",
@@ -65,7 +65,7 @@ export const platforms: Platform[] = [
         accessed: "2026-10-15",
       },
     ],
-    notes: "Trading-fee waiver is separate from spread. Strike's fee FAQ states it 'targets an all-in spread of 0.22%' (actual may be higher/lower; reflected in quoted price). We model 0.22% as ESTIMATE on every purchase, plus 0.89% trading fee on the first weekly buy only. One-time buys remain fully tiered.",
+    notes: "Trading-fee waiver is separate from spread. Strike's fee FAQ states it 'targets an all-in spread of 0.21%' (actual may be higher/lower; reflected in quoted price). We model 0.21% as ESTIMATE on every purchase (was 0.22% until the FAQ changed; re-verified 2026-11-23), plus 0.89% trading fee on the first weekly buy only. One-time buys remain fully tiered.",
   },
   {
     id: "river",

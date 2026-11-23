@@ -77,6 +77,27 @@
       "type": "baseline",
       "summary": "Baseline added: Fold now has one free plan (membership dropped 2026-10-20). Without a $5,000+ Reserve balance a 1% fee applies to buys and sells including automated buys, plus undisclosed Fold/BitGo spreads (modeled 0.5% ESTIMATE). With $5,000+ Reserve, Fold fee and added spread are 0% (BitGo market spread remains); Fold charges no withdrawal fee.",
       "source": "https://blog.foldapp.com/getting-back-to-what-we-do-best"
+    },
+    {
+      "date": "2026-11-23",
+      "platformId": "strike",
+      "type": "spread-change",
+      "summary": "Strike's trading-fees FAQ now says it targets an all-in spread of 0.21% (was 0.22%). Updated spreadEstimatePct from 0.22% to 0.21% (estimate). Recurring path at $100/wk moves from ~$12.33/yr to ~$11.81/yr (first-buy 0.89% + 0.21%×52). One-time fee tiers unchanged: 0.89% at ≤$4,999.99 monthly volume, 0.79% at $5,000–$49,999.99, down to 0.25% at ≥$15M; a single trade counts toward its own tier.",
+      "source": "https://strike.me/en/faq/what-are-the-bitcoin-trading-fees-on-strike/"
+    },
+    {
+      "date": "2026-11-23",
+      "platformId": "cashapp",
+      "type": "baseline",
+      "summary": "One-time Market Buy baseline (for StackCost's one-time buy pages): 2.0% at $1–$499, 1.5% at $500–$999, 0.9% at $1,000–$1,999, 0% at $2,000+; spread 0–0.75% except buys over $2,000 and Auto Invest/Round Ups/direct deposit (zero spread). Auto Invest remains 0% fee and 0% spread.",
+      "source": "https://cash.app/bitcoin/fees"
+    },
+    {
+      "date": "2026-11-23",
+      "platformId": "river",
+      "type": "no-change",
+      "summary": "Re-verified: one-time orders up to $1,000,000 pay 1.00% (0.70% $1M–$5M, 0.40% $5M–$15M, 0.25% $15M+); recurring buys 0% from the second weekly order. Page still dated 2026-10-23.",
+      "source": "https://support.river.com/hc/en-us/articles/50055900679315-What-are-River-s-fees"
     }
   ]
 }

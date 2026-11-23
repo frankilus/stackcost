@@ -6,6 +6,7 @@ import { COMPARE_WEEKLIES, computeCost, formatPct, formatUsd } from "@/lib/calc"
 import { SITE_URL } from "@/lib/compares";
 import { costPages, HUB_SLUG } from "@/lib/costPages";
 import { DCA_AMOUNTS, DCA_MONTHLY_AMOUNTS, dcaSlug } from "@/lib/dcaAmounts";
+import { BUY_AMOUNTS, buyPath } from "@/lib/oneTimeBuys";
 import { LAST_UPDATED, platforms } from "@/lib/platforms";
 
 const TITLE = "Cheapest Way to DCA Bitcoin in the US (2026): All-In Cost Ranking";
@@ -95,6 +96,12 @@ export default function Hub() {
         <div className="mt-4 flex flex-wrap gap-3 text-sm">
           {DCA_MONTHLY_AMOUNTS.map((a) => (
             <Link key={a} href={`/costs/dca/${dcaSlug(a, "month")}`} className="rounded-lg border border-zinc-800 px-3 py-1.5 text-zinc-300 hover:border-amber-500/50 hover:text-amber-400">${a.toLocaleString("en-US")}/month</Link>
+          ))}
+        </div>
+        <h2 className="mt-8 text-xl font-semibold text-zinc-50">Buying once instead? One-time purchase costs</h2>
+        <div className="mt-4 flex flex-wrap gap-3 text-sm">
+          {BUY_AMOUNTS.map((a) => (
+            <Link key={a} href={buyPath(a)} className="rounded-lg border border-zinc-800 px-3 py-1.5 text-zinc-300 hover:border-amber-500/50 hover:text-amber-400">Buy ${a.toLocaleString("en-US")} once</Link>
           ))}
         </div>
       </section>

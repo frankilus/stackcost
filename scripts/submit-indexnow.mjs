@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Submit every sitemap URL to IndexNow (Bing, Yandex, and other participating engines).
- * Usage: node scripts/submit-indexnow.mjs
+ * Usage: node scripts/submit-indexnow.mjs [url-or-path ...]   (no args = every sitemap URL)
  * The key file must already be live at https://<host>/<key>.txt
  */
 import { readdir, readFile } from "node:fs/promises";
@@ -35,7 +35,9 @@ async function sitemapUrls() {
 
 async function main() {
   const { key, keyLocation } = await loadKey();
-  const urlList = await sitemapUrls();
+  // Optional: pass specific URLs (or site paths like /costs/buy) as CLI args to submit only those.
+  const args = process.argv.slice(2);
+  const urlList = args.length ? args.map((u) => (u.startsWith("http") ? u : `${SITE}${u}`)) : await sitemapUrls();
   const body = { host: HOST, key, keyLocation, urlList };
   const res = await fetch("https://api.indexnow.org/indexnow", {
     method: "POST",

@@ -37,7 +37,8 @@ export default function CalculatorPage() {
       <p className="mt-3 text-xs text-zinc-500">
         Weekly = 52 buys; monthly = 12 buys. Same cost functions as every other page on StackCost (see{" "}
         <Link href="/methodology" className="text-amber-400 hover:underline">methodology</Link>). Withdrawal and miner fees are excluded; see{" "}
-        <Link href="/costs/bitcoin-withdrawal-fees" className="text-amber-400 hover:underline">Bitcoin withdrawal fees</Link>. Track changes on the{" "}
+        <Link href="/costs/bitcoin-withdrawal-fees" className="text-amber-400 hover:underline">Bitcoin withdrawal fees</Link>. Buying once instead? See{" "}
+        <Link href="/costs/buy" className="text-amber-400 hover:underline">one-time Bitcoin buy costs</Link>. Track changes on the{" "}
         <Link href="/fee-changes" className="text-amber-400 hover:underline">fee change log</Link>. Not financial advice.
       </p>
     </article>
